@@ -7,6 +7,8 @@ import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
 import { BarChart } from "@/registry/new-york/bar-chart/bar-chart";
 import { PlasmaOrb } from "@/registry/new-york/plasma-orb/plasma-orb";
 import { ThemeSwitcher } from "@/registry/new-york/theme-switcher/theme-switcher";
+import { AsciiTabs } from "@/registry/new-york/ascii-tabs/ascii-tabs";
+import { Ascii3DRenderer } from "@/registry/new-york/ascii-3d-renderer/ascii-3d-renderer";
 import { measureCharWidth } from "@/registry/new-york/measure/measure";
 import { useState } from "react";
 
@@ -131,7 +133,7 @@ export default function HomePage() {
 
   const descLines = [
     "",
-    "Neural architect specializing in AI intelligence frameworks",
+    "Neural architecture specializing in AI intelligence frameworks",
     "Designing autonomous systems for information analysis   ...",
     "CogSec meets artificial consciousness                  ...",
     "where design becomes liquid, and appeal flows in a new state",
@@ -140,7 +142,8 @@ export default function HomePage() {
   const menuLines = [
     " ├ INFO – a Digital Labyrinth of Thoughts & Concepts",
     " ├ DESIGN – Design Concepts",
-    " └ APPLICATION – useful utilities & tools",
+    " ├ APPLICATION – useful utilities & tools",
+    " └ COMPONENTS – ASCII UI component registry",
   ];
 
   const navTitle = "//NAVIGATION MENU" + " ".repeat(Math.max(0, inner - 17 - 3)) + "...";
@@ -177,7 +180,7 @@ export default function HomePage() {
           <div>{V + " ┌" + "─".repeat(W - 6) + "┐ " + V}</div>
           <div>
             {V + " ├─┤"}
-            <BouncingBanner text="[SHIMAZUSYSTEMS]" width={bSpanW} />
+            <BouncingBanner text="[ASCIISYSTEMS]" width={bSpanW} />
             {"├─┤ " + V}
           </div>
           <div>{V + " └" + "─".repeat(W - 6) + "┘ " + V}</div>
@@ -194,9 +197,21 @@ export default function HomePage() {
           {pad("// SYSTEM STATUS\nVersion: 2025.1") + "\n" + hline("╠", "╣")}
         </div>
 
-        {/* 5. Portrait animation */}
+        {/* 5. Character animation with tabs */}
         <div className="section section-full" style={{ whiteSpace: "pre" }}>
-          <PortraitAnimation width={W} />
+          <AsciiTabs
+            tabs={[
+              {
+                label: "ARES",
+                content: <PortraitAnimation width={W} />,
+              },
+              {
+                label: "MORPH",
+                content: <Ascii3DRenderer geometry="horse" width={Math.min(400, (W - 4) * 8)} height={portrait.length * 13} autoRotate={false} />,
+              },
+            ]}
+            width={W - 2}
+          />
           <div>{hline("╠", "╣")}</div>
         </div>
 
@@ -228,6 +243,7 @@ export default function HomePage() {
             if (text.includes("INFO")) window.location.href = "/info";
             else if (text.includes("DESIGN")) window.location.href = "/design";
             else if (text.includes("APPLICATION")) window.location.href = "/application";
+            else if (text.includes("COMPONENTS")) window.location.href = "/components";
           }}
         >
           {pad(menuLines.join("\n")) + "\n" + hline("╚", "╝")}
