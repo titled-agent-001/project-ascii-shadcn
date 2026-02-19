@@ -175,23 +175,37 @@ export function AsciiTabs({
 
       {/* Content area */}
       {contentStr !== null ? (
-        <div className="relative">
-          {/* Copy button */}
-          <button
-            onClick={handleCopy}
-            className={cn(
-              "absolute top-0 right-4 z-10 cursor-pointer select-none px-1",
-              "opacity-50 hover:opacity-100 transition-opacity",
-              copied && "opacity-100"
-            )}
-            aria-label="Copy to clipboard"
-            title={copied ? "Copied!" : "Copy"}
-          >
-            {copied ? "[✓]" : "[⧉]"}
-          </button>
-          {contentStr.split("\n").map((line, i) => (
-            <div key={i}>{padLine(` ${line}`)}</div>
-          ))}
+        <div>
+          {(() => {
+            const lines = contentStr.split("\n");
+            const copyLabel = copied ? "✓ copied" : "⧉ copy";
+            const firstLinePadded = padLine(` ${lines[0]}`);
+            // Replace trailing spaces before the closing border with the copy button
+            const innerWidth = Math.max(width, buildHeaders().length) - 2;
+            const firstContent = ` ${lines[0]}`;
+            const available = innerWidth - firstContent.length;
+            const btnInline = available >= copyLabel.length
+              ? `${v}${firstContent}${" ".repeat(available - copyLabel.length)}${copyLabel}${v}`
+              : firstLinePadded;
+            return (
+              <>
+                <div>
+                  <span>{btnInline.slice(0, btnInline.length - copyLabel.length - 1)}</span>
+                  <span
+                    onClick={handleCopy}
+                    className="cursor-pointer select-none opacity-50 hover:opacity-100 transition-opacity"
+                    title={copied ? "Copied!" : "Copy to clipboard"}
+                  >
+                    {copyLabel}
+                  </span>
+                  <span>{v}</span>
+                </div>
+                {lines.slice(1).map((line, i) => (
+                  <div key={i}>{padLine(` ${line}`)}</div>
+                ))}
+              </>
+            );
+          })()}
           <div>{padLine("")}</div>
         </div>
       ) : (
