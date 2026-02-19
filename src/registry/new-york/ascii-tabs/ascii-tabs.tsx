@@ -126,19 +126,22 @@ export function AsciiTabs({
   const contentStr =
     typeof tabs[active].content === "string" ? (tabs[active].content as string) : null;
 
-  const handleCopy = () => {
-    if (contentStr) {
-      navigator.clipboard.writeText(contentStr).then(() => {
+  // Reset copied state when switching tabs
+  React.useEffect(() => {
+    setCopied(false);
+  }, [active]);
+
+  const handleCopyActive = () => {
+    const text = typeof tabs[active].content === "string"
+      ? (tabs[active].content as string)
+      : "";
+    if (text) {
+      navigator.clipboard.writeText(text).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       });
     }
   };
-
-  // Reset copied state when switching tabs
-  React.useEffect(() => {
-    setCopied(false);
-  }, [active]);
 
   return (
     <div
@@ -148,26 +151,39 @@ export function AsciiTabs({
       onKeyDown={handleKeyDown}
       aria-label="ASCII Tabs"
     >
-      {/* Tab headers */}
-      <div className="flex">
-        {tabs.map((tab, i) => (
-          <React.Fragment key={i}>
-            <span
-              role="tab"
-              aria-selected={i === active}
-              className={cn(
-                "cursor-pointer select-none",
-                i === active ? "opacity-100" : "opacity-60 hover:opacity-80"
-              )}
-              onClick={() => handleSelect(i)}
-            >
-              {i === active
-                ? `${tl}${h}${h}${tab.label}${h}${h}${tr}`
-                : `${inactiveL}${h}${h}${tab.label}${h}${h}${inactiveR}`}
-            </span>
-            {i < tabs.length - 1 && <span>{" "}</span>}
-          </React.Fragment>
-        ))}
+      {/* Copy button + Tab headers row */}
+      <div className="flex items-center justify-between">
+        <div className="flex">
+          {tabs.map((tab, i) => (
+            <React.Fragment key={i}>
+              <span
+                role="tab"
+                aria-selected={i === active}
+                className={cn(
+                  "cursor-pointer select-none",
+                  i === active ? "opacity-100" : "opacity-60 hover:opacity-80"
+                )}
+                onClick={() => handleSelect(i)}
+              >
+                {i === active
+                  ? `${tl}${h}${h}${tab.label}${h}${h}${tr}`
+                  : `${inactiveL}${h}${h}${tab.label}${h}${h}${inactiveR}`}
+              </span>
+              {i < tabs.length - 1 && <span>{" "}</span>}
+            </React.Fragment>
+          ))}
+        </div>
+        <span
+          onClick={handleCopyActive}
+          className={cn(
+            "cursor-pointer select-none whitespace-nowrap",
+            "opacity-50 hover:opacity-100 transition-opacity",
+            copied && "opacity-100"
+          )}
+          title={copied ? "Copied!" : "Copy to clipboard"}
+        >
+          {copied ? "✓ copied" : "⧉ copy"}
+        </span>
       </div>
 
       {/* Connection line */}
@@ -175,20 +191,7 @@ export function AsciiTabs({
 
       {/* Content area */}
       {contentStr !== null ? (
-        <div className="relative">
-          {/* Copy button */}
-          <button
-            onClick={handleCopy}
-            className={cn(
-              "absolute top-0 right-4 z-10 cursor-pointer select-none px-1",
-              "opacity-50 hover:opacity-100 transition-opacity",
-              copied && "opacity-100"
-            )}
-            aria-label="Copy to clipboard"
-            title={copied ? "Copied!" : "Copy"}
-          >
-            {copied ? "[✓]" : "[⧉]"}
-          </button>
+        <div>
           {contentStr.split("\n").map((line, i) => (
             <div key={i}>{padLine(` ${line}`)}</div>
           ))}
