@@ -41,25 +41,25 @@ function PlasmaBarSection({ width }: { width: number }) {
         plasma.push(row);
       }
 
-      // Generate bar chart
+      // Generate bar chart (sized to fit INSIDE the ┌─┐ border)
+      const chartInner = CHART_W - 2;
       const barCount = 9;
-      const barW = Math.max(1, Math.floor(CHART_W / barCount) - 1);
-      const barGap = Math.floor(CHART_W / barCount);
-      const chartGrid: string[][] = Array.from({ length: VIS_H }, () => Array(CHART_W).fill(" "));
+      const barW = Math.max(1, Math.floor(chartInner / barCount) - 1);
+      const barGap = Math.floor(chartInner / barCount);
+      const chartGrid: string[][] = Array.from({ length: VIS_H }, () => Array(chartInner).fill(" "));
       for (let b = 0; b < barCount; b++) {
         const x = barGap * b;
         const h = Math.floor((0.4 * Math.sin((b + 0.1 * epoch) * 0.8) +
           0.3 * Math.cos(1.3 * b + 0.15 * epoch) + 0.5) * VIS_H);
         for (let row = 0; row < VIS_H; row++) {
           if (VIS_H - 1 - row < h) {
-            for (let dx = 0; dx < barW && x + dx < CHART_W; dx++)
+            for (let dx = 0; dx < barW && x + dx < chartInner; dx++)
               chartGrid[row][x + dx] = "█";
           }
         }
       }
 
       // Compose lines: plasma + gap + ┌─chart─┐ with no vertical │ sides
-      const chartInner = CHART_W - 2; // space inside ┌─┐
       for (let y = 0; y < VIS_H; y++) {
         const p = plasma[y].join("");
         const gap = " ".repeat(GAP);
@@ -69,7 +69,7 @@ function PlasmaBarSection({ width }: { width: number }) {
         } else if (y === VIS_H - 1) {
           chartLine = "└" + "─".repeat(chartInner) + "┘";
         } else {
-          chartLine = chartGrid[y].slice(0, CHART_W).join("");
+          chartLine = " " + chartGrid[y].join("") + " ";
         }
         const content = p + gap + chartLine;
         const padded = content + " ".repeat(Math.max(0, width - content.length));
