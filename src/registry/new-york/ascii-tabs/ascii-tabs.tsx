@@ -179,32 +179,25 @@ export function AsciiTabs({
           {(() => {
             const lines = contentStr.split("\n");
             const copyLabel = copied ? "✓ copied" : "⧉ copy";
+            const firstLinePadded = padLine(` ${lines[0]}`);
+            // Replace trailing spaces before the closing border with the copy button
             const innerWidth = Math.max(width, buildHeaders().length) - 2;
-
-            // First line: content + copy button right-aligned, all within borders
             const firstContent = ` ${lines[0]}`;
             const available = innerWidth - firstContent.length;
-            const hasCopySpace = available >= copyLabel.length + 1;
-
+            const btnInline = available >= copyLabel.length
+              ? `${v}${firstContent}${" ".repeat(available - copyLabel.length)}${copyLabel}${v}`
+              : firstLinePadded;
             return (
               <>
                 <div>
-                  <span>{v}</span>
-                  <span>{firstContent}</span>
-                  {hasCopySpace ? (
-                    <>
-                      <span>{" ".repeat(available - copyLabel.length)}</span>
-                      <span
-                        onClick={handleCopy}
-                        className="cursor-pointer select-none opacity-50 hover:opacity-100 transition-opacity"
-                        title={copied ? "Copied!" : "Copy to clipboard"}
-                      >
-                        {copyLabel}
-                      </span>
-                    </>
-                  ) : (
-                    <span>{" ".repeat(Math.max(0, available))}</span>
-                  )}
+                  <span>{btnInline.slice(0, btnInline.length - copyLabel.length - 1)}</span>
+                  <span
+                    onClick={handleCopy}
+                    className="cursor-pointer select-none opacity-50 hover:opacity-100 transition-opacity"
+                    title={copied ? "Copied!" : "Copy to clipboard"}
+                  >
+                    {copyLabel}
+                  </span>
                   <span>{v}</span>
                 </div>
                 {lines.slice(1).map((line, i) => (
