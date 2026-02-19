@@ -56,7 +56,7 @@ export default function DesignPage() {
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
           <div>{top}</div>
           <div>{`║${pad("//DESIGN                                                         ...")}║`}</div>
-          <div>{`║${pad("...                                                Design Concepts")}║`}</div>
+          <div>{`║${pad("...                                              Design Concepts")}║`}</div>
           <div>{mid}</div>
           <div>{banTop}</div>
           <div>{`║├─┤`}<BouncingBanner text="[DESIGN]" width={W - 6} />{`├─┤║`}</div>
@@ -74,16 +74,7 @@ export default function DesignPage() {
           <div>{`║${pad("   └ Dark-first — designed for the void")}║`}</div>
           <div>{inner}</div>
           <div>{mid}</div>
-          <div className="flex">
-            <span>║</span>
-            <PlasmaOrb width={17} height={10} />
-            <div>
-              <div>{`┌${"─".repeat(W - 19)}┐`}</div>
-              <BarChart width={W - 19} height={8} barCount={9} />
-              <div>{`└${"─".repeat(W - 19)}┘`}</div>
-            </div>
-            <span>║</span>
-          </div>
+          <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden", verticalAlign: "top" }}><span style={{ display: "inline-block", verticalAlign: "top" }}><PlasmaOrb width={17} height={10} /></span><span style={{ display: "inline-block", width: "2ch" }}>{" "}</span><span style={{ display: "inline-block", verticalAlign: "top" }}><div>{`┌${"─".repeat(W - 21)}┐`}</div><BarChart width={W - 21} height={8} barCount={9} /><div>{`└${"─".repeat(W - 21)}┘`}</div></span></span>║</div>
           <div>{mid}</div>
           <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{` `}<InlineThemeSwitcher /></span>║</div>
           <div>{mid}</div>
