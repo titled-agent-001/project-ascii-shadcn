@@ -55,7 +55,7 @@ export default function ApplicationPage() {
         </div>
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
         <div>{`>  ║`}</div>
-        <DotMatrix width={58} height={6} />
+        <DotMatrix text="ASCIISYSTEMS" speed={80} />
         <div>{`>  ║`}</div>
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
         <div>{`>  ║ `}<InlineThemeSwitcher />{`  ║`}</div>
