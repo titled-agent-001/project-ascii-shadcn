@@ -52,7 +52,7 @@ function PortraitAnimation({ width }: { width: number }) {
     const render = () => {
       for (let r = 0; r < portrait.length; r++) {
         const orig = portrait[r];
-        let line = "║";
+        let line = "";
         for (let c = 0; c < portWidth; c++) {
           if (c < orig.length) {
             if (orig[c] === ".") {
@@ -72,7 +72,6 @@ function PortraitAnimation({ width }: { width: number }) {
             line += dotChars[idx];
           }
         }
-        line += "║";
         portRows[r].textContent = line;
       }
       e3 += 0.15;
@@ -237,16 +236,23 @@ export default function HomePage() {
         {/* 8. Nav menu items */}
         <div
           className="section section-full"
-          style={{ whiteSpace: "pre", cursor: "pointer" }}
-          onClick={(e) => {
-            const text = (e.target as HTMLElement).textContent || "";
-            if (text.includes("INFO")) window.location.href = "/info";
-            else if (text.includes("DESIGN")) window.location.href = "/design";
-            else if (text.includes("APPLICATION")) window.location.href = "/application";
-            else if (text.includes("COMPONENTS")) window.location.href = "/components";
-          }}
+          style={{ whiteSpace: "pre" }}
         >
-          {pad(menuLines.join("\n")) + "\n" + hline("╚", "╝")}
+          {menuLines.map((line, i) => (
+            <div
+              key={i}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                if (line.includes("INFO")) window.location.href = "/info";
+                else if (line.includes("DESIGN")) window.location.href = "/design";
+                else if (line.includes("APPLICATION")) window.location.href = "/application";
+                else if (line.includes("COMPONENTS")) window.location.href = "/components";
+              }}
+            >
+              {pad(line)}
+            </div>
+          ))}
+          {"\n" + hline("╚", "╝")}
         </div>
 
         {/* 9. Charts row */}
