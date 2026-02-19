@@ -44,12 +44,12 @@ export default function ApplicationPage() {
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
         <div style={{ paddingLeft: "3ch" }}>
           <StatusPanel
-            rows={[
-              { label: "NETWORK", value: "ACTIVE" },
-              { label: "NODES", value: "47 ONLINE" },
-              { label: "LATENCY", value: "12ms" },
-              { label: "UPTIME", value: "99.97%" },
-            ]}
+            entries={{
+              "NETWORK": "ACTIVE",
+              "NODES": "47 ONLINE",
+              "LATENCY": "12ms",
+              "UPTIME": "99.97%",
+            }}
             width={58}
           />
         </div>
