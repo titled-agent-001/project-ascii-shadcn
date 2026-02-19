@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-context";
 
 export const metadata: Metadata = {
-  title: "Shimazu Systems",
-  description: "my website lol",
+  title: "asciisystems",
+  description: "ascii ui and components for underground agents",
 };
 
 export default function RootLayout({
