@@ -16,6 +16,7 @@ import { ThemeSwitcher } from "@/registry/new-york/theme-switcher/theme-switcher
 import { AsciiInput } from "@/registry/new-york/ascii-input/ascii-input";
 import { Ascii3DRenderer } from "@/registry/new-york/ascii-3d-renderer/ascii-3d-renderer";
 import { AsciiTabs } from "@/registry/new-york/ascii-tabs/ascii-tabs";
+import { AsciiGutter } from "@/registry/new-york/ascii-gutter/ascii-gutter";
 
 const dotText = [
   "..........██...........",
@@ -972,6 +973,85 @@ export function AsciiTabs({
 }
 `;
 
+const ASCII_GUTTER_SRC = `"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+export interface AsciiGutterProps {
+  char?: string;
+  side?: "left" | "right" | "both";
+  gap?: number;
+  opacity?: number;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function AsciiGutter({
+  char = ">",
+  side = "left",
+  gap = 1,
+  opacity = 0.4,
+  children,
+  className,
+}: AsciiGutterProps) {
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const gutterLeftRef = React.useRef<HTMLDivElement>(null);
+  const gutterRightRef = React.useRef<HTMLDivElement>(null);
+  const [lineCount, setLineCount] = React.useState(0);
+
+  React.useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const measure = () => {
+      const style = window.getComputedStyle(el);
+      const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
+      const totalHeight = el.scrollHeight;
+      const lines = Math.max(1, Math.round(totalHeight / lineHeight));
+      setLineCount(lines);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    const mo = new MutationObserver(measure);
+    mo.observe(el, { childList: true, subtree: true, characterData: true });
+    return () => { ro.disconnect(); mo.disconnect(); };
+  }, [children]);
+
+  const gutterChars = Array.from({ length: lineCount }, () => char).join("\\n");
+
+  return (
+    <div
+      className={cn("font-mono flex", className)}
+      style={{ lineHeight: "inherit", fontSize: "inherit" }}
+    >
+      {(side === "left" || side === "both") && (
+        <div
+          ref={gutterLeftRef}
+          className="select-none shrink-0 whitespace-pre"
+          style={{ opacity, paddingRight: \\\`\\\${gap}ch\\\`, lineHeight: "inherit", fontSize: "inherit" }}
+          aria-hidden="true"
+        >
+          {gutterChars}
+        </div>
+      )}
+      <div ref={contentRef} className="flex-1 min-w-0" style={{ lineHeight: "inherit", fontSize: "inherit" }}>
+        {children}
+      </div>
+      {(side === "right" || side === "both") && (
+        <div
+          ref={gutterRightRef}
+          className="select-none shrink-0 whitespace-pre"
+          style={{ opacity, paddingLeft: \\\`\\\${gap}ch\\\`, lineHeight: "inherit", fontSize: "inherit" }}
+          aria-hidden="true"
+        >
+          {gutterChars}
+        </div>
+      )}
+    </div>
+  );
+}`;
+
 const BASE = "https://project-ascii-shadcn.vercel.app";
 
 export default function ComponentsPage() {
@@ -1777,9 +1857,61 @@ export default function ComponentsPage() {
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
         </div>
 
+        {/* 16. AsciiGutter */}
+        <div></div>
+        <div>{`┌─ 16. AsciiGutter ─────────────────────────────────────────────────────────┐`}</div>
+        <div></div>
+        <div>{`  A side-gutter component that renders repeating characters`}</div>
+        <div>{`  (like >) along the edge of content, matching line count.`}</div>
+        <div>{`  Configurable: char, side, gap, opacity`}</div>
+        <div></div>
+        <div>{`  Demo:`}</div>
+        <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+          <AsciiGutter char=">" side="left" gap={1} opacity={0.5}>
+            <div style={{ whiteSpace: "pre", fontFamily: "inherit" }}>
+              {`Line one of gutter content\nLine two of gutter content\nLine three of gutter content\nLine four of gutter content`}
+            </div>
+          </AsciiGutter>
+        </div>
+        <div>{`  Installation:`}</div>
+        <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+          <AsciiTabs
+            tabs={[
+              { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-gutter.json"` },
+              { label: "Manual", content: ASCII_GUTTER_SRC },
+            ]}
+            width={70}
+          />
+        </div>
+        <div></div>
+        <div>{`  Props:`}</div>
+        <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+          <AsciiTable
+            headers={["Prop", "Type", "Default", "Description"]}
+            rows={[
+              ["char", "string", '">"', "Gutter character"],
+              ["side", '"left"|"right"|"both"', '"left"', "Gutter position"],
+              ["gap", "number", "1", "Gap in ch units"],
+              ["opacity", "number", "0.4", "Gutter opacity"],
+              ["children", "ReactNode", "—", "Content to wrap"],
+            ]}
+          />
+        </div>
+        <div></div>
+        <div>{`  Usage:`}</div>
+        <div></div>
+        <div>{`    import { AsciiGutter }`}</div>
+        <div>{`      from "@/registry/new-york/ascii-gutter/ascii-gutter"`}</div>
+        <div></div>
+        <div>{`    <AsciiGutter char=">" side="left" gap={1} opacity={0.5}>`}</div>
+        <div>{`      <div>Your content here</div>`}</div>
+        <div>{`    </AsciiGutter>`}</div>
+        <div></div>
+        <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
+
         <div></div>
         <div>{`══════════════════════════════════════════════════════════════════════════════`}</div>
-        <div>{`  shimazu systems ─ component library v1.0`}</div>
+        <div>{`  ascii systems ─ component library v1.0`}</div>
         <div></div>
       </div>
     </main>

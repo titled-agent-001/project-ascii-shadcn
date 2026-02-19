@@ -159,6 +159,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ascii-gutter",
+      "type": "registry:block",
+      "title": "ASCII Gutter",
+      "description": "A side-gutter component that renders repeating characters (like >) along the edge of content, matching line count dynamically.",
+      "files": [
+        {
+          "path": "src/registry/new-york/ascii-gutter/ascii-gutter.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
