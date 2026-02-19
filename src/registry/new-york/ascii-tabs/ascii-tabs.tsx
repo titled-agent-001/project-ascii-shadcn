@@ -121,8 +121,24 @@ export function AsciiTabs({
   const lineWidth = Math.max(width, header.length);
   const bottomLine = `${bl}${h.repeat(lineWidth - 2)}${br}`;
 
+  const [copied, setCopied] = React.useState(false);
+
   const contentStr =
     typeof tabs[active].content === "string" ? (tabs[active].content as string) : null;
+
+  const handleCopy = () => {
+    if (contentStr) {
+      navigator.clipboard.writeText(contentStr).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    }
+  };
+
+  // Reset copied state when switching tabs
+  React.useEffect(() => {
+    setCopied(false);
+  }, [active]);
 
   return (
     <div
@@ -159,12 +175,25 @@ export function AsciiTabs({
 
       {/* Content area */}
       {contentStr !== null ? (
-        <>
+        <div className="relative">
+          {/* Copy button */}
+          <button
+            onClick={handleCopy}
+            className={cn(
+              "absolute top-0 right-4 z-10 cursor-pointer select-none px-1",
+              "opacity-50 hover:opacity-100 transition-opacity",
+              copied && "opacity-100"
+            )}
+            aria-label="Copy to clipboard"
+            title={copied ? "Copied!" : "Copy"}
+          >
+            {copied ? "[✓]" : "[⧉]"}
+          </button>
           {contentStr.split("\n").map((line, i) => (
             <div key={i}>{padLine(` ${line}`)}</div>
           ))}
           <div>{padLine("")}</div>
-        </>
+        </div>
       ) : (
         <div className="flex">
           <span>{v}</span>
