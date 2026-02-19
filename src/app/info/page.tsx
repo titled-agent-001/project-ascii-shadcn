@@ -6,7 +6,7 @@ import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-ban
 import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
-const W = 60;
+const W = 72;
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -54,8 +54,8 @@ export default function InfoPage() {
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
           <div>{top}</div>
-          <div>{`║${pad("//INFO                                                 ...")}║`}</div>
-          <div>{`║${pad("...               a Digital Labyrinth of Thoughts & Concepts")}║`}</div>
+          <div>{`║${pad("//INFO                                                           ...")}║`}</div>
+          <div>{`║${pad("...                         a Digital Labyrinth of Thoughts & Concepts")}║`}</div>
           <div>{mid}</div>
           <div>{banTop}</div>
           <div>{`║├─┤`}<BouncingBanner text="[INFO]" width={W - 6} />{`├─┤║`}</div>

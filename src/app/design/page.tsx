@@ -7,7 +7,7 @@ import { PlasmaOrb } from "@/registry/new-york/plasma-orb/plasma-orb";
 import { BarChart } from "@/registry/new-york/bar-chart/bar-chart";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
-const W = 60; // inner width between ║ borders
+const W = 72; // inner width between ║ borders
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -55,8 +55,8 @@ export default function DesignPage() {
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
           <div>{top}</div>
-          <div>{`║${pad("//DESIGN                                               ...")}║`}</div>
-          <div>{`║${pad("...                                      Design Concepts")}║`}</div>
+          <div>{`║${pad("//DESIGN                                                         ...")}║`}</div>
+          <div>{`║${pad("...                                                Design Concepts")}║`}</div>
           <div>{mid}</div>
           <div>{banTop}</div>
           <div>{`║├─┤`}<BouncingBanner text="[DESIGN]" width={W - 6} />{`├─┤║`}</div>
