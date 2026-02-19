@@ -78,10 +78,14 @@ export default function DesignPage() {
             <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
             <div style={{ width: `${17}ch` }} className="shrink-0"><PlasmaOrb width={17} height={10} /></div>
             <div style={{ width: "2ch" }} className="shrink-0">{" "}</div>
-            <div className="flex-1 min-w-0">
-              <div>{`┌${"─".repeat(W - 21)}┐`}</div>
-              <BarChart width={W - 21} height={8} barCount={9} />
-              <div>{`└${"─".repeat(W - 21)}┘`}</div>
+            <div className="flex-1 min-w-0 flex">
+              <div className="shrink-0">{`┌${"│\n".repeat(8).trimEnd()}\n└`}</div>
+              <div className="flex-1 min-w-0">
+                <div>{`${"─".repeat(W - 23)}`}</div>
+                <BarChart width={W - 23} height={8} barCount={9} />
+                <div>{`${"─".repeat(W - 23)}`}</div>
+              </div>
+              <div className="shrink-0">{`┐${"│\n".repeat(8).trimEnd()}\n┘`}</div>
             </div>
             <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
           </div>
