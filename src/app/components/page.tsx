@@ -26,6 +26,8 @@ const dotText = [
   "....██..........██.....",
 ].join("\n");
 
+const BASE = "https://project-ascii-shadcn.vercel.app";
+
 export default function ComponentsPage() {
   return (
     <main className="preserve-spaces flex min-h-screen flex-col items-start justify-start p-4">
@@ -50,12 +52,31 @@ export default function ComponentsPage() {
           <div></div>
           <div>{`  Demo: (see header above ↑)`}</div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/bouncing-banner.json"          │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/bouncing-banner/bouncing-banner.tsx               │`}</div>
+          <div>{`  │   →  components/bouncing-banner.tsx                                      │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ text         │ string   │ required │ Label text to display               │`}</div>
+          <div>{`  │ width        │ number   │ required │ Total width in characters            │`}</div>
+          <div>{`  │ speed        │ number   │ 150      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const bb = new BouncingBanner(el, {                                      │`}</div>
-          <div>{`  │   text: '[MY-LABEL]', width: 54, speed: 150                              │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ bb.start();                                                              │`}</div>
+          <div>{`  │ import { BouncingBanner }                                                │`}</div>
+          <div>{`  │   from "@/registry/new-york/bouncing-banner/bouncing-banner"             │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <BouncingBanner text="[MY-LABEL]" width={54} speed={150} />              │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -73,12 +94,31 @@ export default function ComponentsPage() {
           <div>{`  Demo:`}</div>
           <div>{`  ├─┤`}<GradientBanner text="[GRADIENT]" width={50} />{`├─┤`}</div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/gradient-banner.json"          │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/gradient-banner/gradient-banner.tsx               │`}</div>
+          <div>{`  │   →  components/gradient-banner.tsx                                      │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ text         │ string   │ required │ Label text to display               │`}</div>
+          <div>{`  │ width        │ number   │ required │ Total width in characters            │`}</div>
+          <div>{`  │ speed        │ number   │ 150      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const gb = new GradientBanner(el, {                                      │`}</div>
-          <div>{`  │   text: '[CLEAR]', width: 52, speed: 150                                 │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ gb.start();                                                              │`}</div>
+          <div>{`  │ import { GradientBanner }                                                │`}</div>
+          <div>{`  │   from "@/registry/new-york/gradient-banner/gradient-banner"             │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <GradientBanner text="[GRADIENT]" width={52} speed={150} />              │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -96,12 +136,31 @@ export default function ComponentsPage() {
           <div>{`  Demo:`}</div>
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><SineWaveChart width={40} height={8} /></div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/sine-wave.json"                │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/sine-wave/sine-wave.tsx                           │`}</div>
+          <div>{`  │   →  components/sine-wave.tsx                                            │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ width        │ number   │ 40       │ Width in characters                  │`}</div>
+          <div>{`  │ height       │ number   │ 8        │ Height in rows                       │`}</div>
+          <div>{`  │ speed        │ number   │ 100      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const sw = new SineWaveChart(el, {                                       │`}</div>
-          <div>{`  │   width: 40, height: 8, speed: 100                                       │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ sw.start();                                                              │`}</div>
+          <div>{`  │ import { SineWaveChart }                                                 │`}</div>
+          <div>{`  │   from "@/registry/new-york/sine-wave/sine-wave"                        │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <SineWaveChart width={40} height={8} speed={100} />                      │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -119,12 +178,32 @@ export default function ComponentsPage() {
           <div>{`  Demo:`}</div>
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><BarChart width={40} height={8} barCount={10} /></div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/bar-chart.json"                │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/bar-chart/bar-chart.tsx                           │`}</div>
+          <div>{`  │   →  components/bar-chart.tsx                                            │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ width        │ number   │ 32       │ Total width in characters            │`}</div>
+          <div>{`  │ height       │ number   │ 8        │ Height in rows                       │`}</div>
+          <div>{`  │ barCount     │ number   │ 8        │ Number of bars                       │`}</div>
+          <div>{`  │ speed        │ number   │ 100      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const bc = new BarChart(el, {                                            │`}</div>
-          <div>{`  │   width: 32, height: 8, barCount: 8                                      │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ bc.start();                                                              │`}</div>
+          <div>{`  │ import { BarChart }                                                      │`}</div>
+          <div>{`  │   from "@/registry/new-york/bar-chart/bar-chart"                        │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <BarChart width={32} height={8} barCount={8} />                          │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -142,12 +221,31 @@ export default function ComponentsPage() {
           <div>{`  Demo:`}</div>
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><PlasmaOrb width={20} height={12} /></div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/plasma-orb.json"               │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/plasma-orb/plasma-orb.tsx                         │`}</div>
+          <div>{`  │   →  components/plasma-orb.tsx                                           │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ width        │ number   │ 15       │ Width in characters                  │`}</div>
+          <div>{`  │ height       │ number   │ 10       │ Height in rows                       │`}</div>
+          <div>{`  │ speed        │ number   │ 120      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const po = new PlasmaOrb(el, {                                           │`}</div>
-          <div>{`  │   width: 15, height: 10, speed: 120                                      │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ po.start();                                                              │`}</div>
+          <div>{`  │ import { PlasmaOrb }                                                     │`}</div>
+          <div>{`  │   from "@/registry/new-york/plasma-orb/plasma-orb"                      │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <PlasmaOrb width={15} height={10} speed={120} />                         │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -165,12 +263,30 @@ export default function ComponentsPage() {
           <div>{`  Demo:`}</div>
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><DotMatrix text={dotText} /></div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/dot-matrix.json"               │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/dot-matrix/dot-matrix.tsx                         │`}</div>
+          <div>{`  │   →  components/dot-matrix.tsx                                           │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ text         │ string   │ required │ Dot pattern text (. chars animate)  │`}</div>
+          <div>{`  │ speed        │ number   │ 100      │ Animation interval (ms)              │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const dm = new DotMatrix(el, {                                           │`}</div>
-          <div>{`  │   text: '..██..', speed: 100                                             │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ dm.start();                                                              │`}</div>
+          <div>{`  │ import { DotMatrix }                                                     │`}</div>
+          <div>{`  │   from "@/registry/new-york/dot-matrix/dot-matrix"                      │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <DotMatrix text={"..██..\\n.████."} speed={100} />                        │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -194,13 +310,37 @@ export default function ComponentsPage() {
             <AsciiCard title="Double Border" content={"Same card component\nbut with ═ double borders."} width={35} doubleBorder />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/ascii-card.json"               │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/ascii-card/ascii-card.tsx                         │`}</div>
+          <div>{`  │   →  components/ascii-card.tsx                                           │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ title        │ string   │ —        │ Card title                           │`}</div>
+          <div>{`  │ content      │ string   │ —        │ Card body content                    │`}</div>
+          <div>{`  │ width        │ number   │ 40       │ Card width in characters              │`}</div>
+          <div>{`  │ doubleBorder │ boolean  │ false    │ Use ═║ double border style           │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new AsciiCard(el, {                                                      │`}</div>
-          <div>{`  │   title: 'My Card',                                                      │`}</div>
-          <div>{`  │   content: 'Content here',                                               │`}</div>
-          <div>{`  │   width: 40, doubleBorder: false                                         │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { AsciiCard }                                                     │`}</div>
+          <div>{`  │   from "@/registry/new-york/ascii-card/ascii-card"                      │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <AsciiCard                                                               │`}</div>
+          <div>{`  │   title="My Card"                                                        │`}</div>
+          <div>{`  │   content="Content here"                                                 │`}</div>
+          <div>{`  │   width={40}                                                             │`}</div>
+          <div>{`  │   doubleBorder={false}                                                   │`}</div>
+          <div>{`  │ />                                                                       │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -228,12 +368,35 @@ export default function ComponentsPage() {
             />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/ascii-table.json"              │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/ascii-table/ascii-table.tsx                       │`}</div>
+          <div>{`  │   →  components/ascii-table.tsx                                          │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬────────────┬──────────┬───────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type       │ Default  │ Description                       │`}</div>
+          <div>{`  ├──────────────┼────────────┼──────────┼───────────────────────────────────┤`}</div>
+          <div>{`  │ headers      │ string[]   │ required │ Column header labels              │`}</div>
+          <div>{`  │ rows         │ string[][] │ required │ Row data arrays                   │`}</div>
+          <div>{`  │ colWidths    │ number[]   │ auto     │ Column widths (auto-calculated)   │`}</div>
+          <div>{`  │ width        │ number     │ 60       │ Total table width                 │`}</div>
+          <div>{`  └──────────────┴────────────┴──────────┴───────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new AsciiTable(el, {                                                     │`}</div>
-          <div>{`  │   headers: ['Key', 'Value'],                                             │`}</div>
-          <div>{`  │   rows: [['foo','bar'],['baz','qux']]                                    │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { AsciiTable }                                                    │`}</div>
+          <div>{`  │   from "@/registry/new-york/ascii-table/ascii-table"                    │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <AsciiTable                                                              │`}</div>
+          <div>{`  │   headers={["Key", "Value"]}                                             │`}</div>
+          <div>{`  │   rows={[["foo", "bar"], ["baz", "qux"]]}                                │`}</div>
+          <div>{`  │ />                                                                       │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -253,13 +416,35 @@ export default function ComponentsPage() {
           <div>{`  Demo (animated):`}</div>
           <div>{`  `}<AsciiProgressBar value={100} width={30} label="LOADING" animated speed={40} /></div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/progress-bar.json"             │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/progress-bar/progress-bar.tsx                     │`}</div>
+          <div>{`  │   →  components/progress-bar.tsx                                         │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ value        │ number   │ required │ Current progress value               │`}</div>
+          <div>{`  │ max          │ number   │ 100      │ Maximum value                        │`}</div>
+          <div>{`  │ width        │ number   │ 30       │ Bar width in characters              │`}</div>
+          <div>{`  │ label        │ string   │ —        │ Label text after bar                 │`}</div>
+          <div>{`  │ animated     │ boolean  │ false    │ Animate from 0 to value              │`}</div>
+          <div>{`  │ speed        │ number   │ 80       │ Animation step interval (ms)         │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const pb = new AsciiProgressBar(el, {                                    │`}</div>
-          <div>{`  │   value: 75, width: 30,                                                  │`}</div>
-          <div>{`  │   label: 'LOADING', animated: true                                       │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ pb.start();                                                              │`}</div>
+          <div>{`  │ import { AsciiProgressBar }                                              │`}</div>
+          <div>{`  │   from "@/registry/new-york/progress-bar/progress-bar"                  │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <AsciiProgressBar value={75} width={30} />                               │`}</div>
+          <div>{`  │ <AsciiProgressBar value={100} label="LOADING" animated />                │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -279,12 +464,34 @@ export default function ComponentsPage() {
             <StatusPanel entries={{ Version: "2025.1", Components: "12", Status: "OPERATIONAL", Theme: "ACTIVE" }} />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/status-panel.json"             │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/status-panel/status-panel.tsx                     │`}</div>
+          <div>{`  │   →  components/status-panel.tsx                                         │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────────────┬──────────────────┬──────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type             │ Default          │ Description          │`}</div>
+          <div>{`  ├──────────────┼──────────────────┼──────────────────┼──────────────────────┤`}</div>
+          <div>{`  │ title        │ string           │ "// SYSTEM STAT" │ Panel title          │`}</div>
+          <div>{`  │ entries      │ Record<str, str> │ required         │ Key-value pairs      │`}</div>
+          <div>{`  │ width        │ number           │ 40               │ Panel width          │`}</div>
+          <div>{`  └──────────────┴──────────────────┴──────────────────┴──────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new StatusPanel(el, {                                                    │`}</div>
-          <div>{`  │   title: '// SYSTEM STATUS',                                             │`}</div>
-          <div>{`  │   entries: {Version:'2025.1',Status:'OK'}                                │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { StatusPanel }                                                   │`}</div>
+          <div>{`  │   from "@/registry/new-york/status-panel/status-panel"                  │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <StatusPanel                                                             │`}</div>
+          <div>{`  │   title="// SYSTEM STATUS"                                               │`}</div>
+          <div>{`  │   entries={{ Version: "2025.1", Status: "OK" }}                           │`}</div>
+          <div>{`  │ />                                                                       │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -309,14 +516,35 @@ export default function ComponentsPage() {
             ]} />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/nav-menu.json"                 │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/nav-menu/nav-menu.tsx                             │`}</div>
+          <div>{`  │   →  components/nav-menu.tsx                                             │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬────────────────┬──────────┬───────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type           │ Default  │ Description                   │`}</div>
+          <div>{`  ├──────────────┼────────────────┼──────────┼───────────────────────────────┤`}</div>
+          <div>{`  │ items        │ NavMenuItem[]  │ required │ Array of menu items            │`}</div>
+          <div>{`  │ items[].label│ string         │ required │ Link label text                │`}</div>
+          <div>{`  │ items[].description │ string  │ required │ Description text              │`}</div>
+          <div>{`  │ items[].href │ string         │ required │ Link URL                       │`}</div>
+          <div>{`  └──────────────┴────────────────┴──────────┴───────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new NavMenu(el, {                                                        │`}</div>
-          <div>{`  │   items: [                                                               │`}</div>
-          <div>{`  │     {label:'HOME',desc:'Main',href:'/'},                                 │`}</div>
-          <div>{`  │     {label:'INFO',desc:'About',href:'/info'}                             │`}</div>
-          <div>{`  │   ]                                                                      │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { NavMenu }                                                       │`}</div>
+          <div>{`  │   from "@/registry/new-york/nav-menu/nav-menu"                          │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <NavMenu items={[                                                        │`}</div>
+          <div>{`  │   { label: "HOME", description: "Main", href: "/" },                     │`}</div>
+          <div>{`  │   { label: "INFO", description: "About", href: "/info" },                │`}</div>
+          <div>{`  │ ]} />                                                                    │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -327,7 +555,7 @@ export default function ComponentsPage() {
           <div>{`┌─ 12. ThemeSwitcher ────────────────────────────────────────────────────────┐`}</div>
           <div>{`│                                                                            │`}</div>
           <div>{`│  Colour theme + day/night mode control.                                    │`}</div>
-          <div>{`│  Configurable: defaultTheme, defaultMode                                   │`}</div>
+          <div>{`│  Configurable: width                                                       │`}</div>
           <div>{`│                                                                            │`}</div>
           <div>{`└────────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
@@ -336,11 +564,29 @@ export default function ComponentsPage() {
             <ThemeSwitcher />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/theme-switcher.json"           │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/theme-switcher/theme-switcher.tsx                 │`}</div>
+          <div>{`  │   →  components/theme-switcher.tsx                                       │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────┬──────────┬─────────────────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type     │ Default  │ Description                         │`}</div>
+          <div>{`  ├──────────────┼──────────┼──────────┼─────────────────────────────────────┤`}</div>
+          <div>{`  │ width        │ number   │ 40       │ Panel width in characters            │`}</div>
+          <div>{`  └──────────────┴──────────┴──────────┴─────────────────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new ThemeSwitcher(el, {                                                  │`}</div>
-          <div>{`  │   defaultTheme: 'm', defaultMode: 'night'                                │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { ThemeSwitcher }                                                 │`}</div>
+          <div>{`  │   from "@/registry/new-york/theme-switcher/theme-switcher"              │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <ThemeSwitcher width={40} />                                             │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -364,14 +610,41 @@ export default function ComponentsPage() {
             <AsciiInput label="SEARCH" placeholder="search components..." width={40} doubleBorder onSubmit={(v) => console.log("Search:", v)} />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/ascii-input.json"              │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/ascii-input/ascii-input.tsx                       │`}</div>
+          <div>{`  │   →  components/ascii-input.tsx                                          │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌──────────────┬──────────────────────┬──────────┬──────────────────────────┐`}</div>
+          <div>{`  │ Prop         │ Type                 │ Default  │ Description              │`}</div>
+          <div>{`  ├──────────────┼──────────────────────┼──────────┼──────────────────────────┤`}</div>
+          <div>{`  │ label        │ string               │ —        │ Input label text         │`}</div>
+          <div>{`  │ placeholder  │ string               │ ""       │ Placeholder text         │`}</div>
+          <div>{`  │ width        │ number               │ 40       │ Input width              │`}</div>
+          <div>{`  │ doubleBorder │ boolean              │ false    │ Use double border        │`}</div>
+          <div>{`  │ prefix       │ string               │ "> "     │ Input prefix             │`}</div>
+          <div>{`  │ value        │ string               │ ""       │ Initial value            │`}</div>
+          <div>{`  │ onChange     │ (value: string)=>void│ —        │ Change callback          │`}</div>
+          <div>{`  │ onSubmit     │ (value: string)=>void│ —        │ Submit callback          │`}</div>
+          <div>{`  └──────────────┴──────────────────────┴──────────┴──────────────────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ new AsciiInput(el, {                                                     │`}</div>
-          <div>{`  │   label: 'COMMAND',                                                      │`}</div>
-          <div>{`  │   placeholder: 'type here...',                                           │`}</div>
-          <div>{`  │   width: 40, doubleBorder: false,                                        │`}</div>
-          <div>{`  │   onSubmit: (val) => console.log(val)                                    │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
+          <div>{`  │ import { AsciiInput }                                                    │`}</div>
+          <div>{`  │   from "@/registry/new-york/ascii-input/ascii-input"                    │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <AsciiInput                                                              │`}</div>
+          <div>{`  │   label="COMMAND"                                                        │`}</div>
+          <div>{`  │   placeholder="type here..."                                             │`}</div>
+          <div>{`  │   width={40}                                                             │`}</div>
+          <div>{`  │   onSubmit={(val) => console.log(val)}                                   │`}</div>
+          <div>{`  │ />                                                                       │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
@@ -396,15 +669,48 @@ export default function ComponentsPage() {
             <Ascii3DRenderer geometry="horse" width={300} height={200} autoRotate={false} />
           </div>
           <div></div>
+          <div>{`  Installation:`}</div>
+          <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
+          <div>{`  │ CLI:                                                                     │`}</div>
+          <div>{`  │ npx shadcn add "${BASE}/r/ascii-3d-renderer.json"        │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Manual:                                                                  │`}</div>
+          <div>{`  │ Copy: registry/new-york/ascii-3d-renderer/ascii-3d-renderer.tsx           │`}</div>
+          <div>{`  │   →  components/ascii-3d-renderer.tsx                                    │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ Requires: npm install three @types/three                                 │`}</div>
+          <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div>{`  ┌────────────────┬───────────────────────────────┬──────────┬───────────────┐`}</div>
+          <div>{`  │ Prop           │ Type                          │ Default  │ Description   │`}</div>
+          <div>{`  ├────────────────┼───────────────────────────────┼──────────┼───────────────┤`}</div>
+          <div>{`  │ width          │ number                        │ 500      │ Canvas width  │`}</div>
+          <div>{`  │ height         │ number                        │ 300      │ Canvas height │`}</div>
+          <div>{`  │ charset        │ string                        │ " .:-+*=%│ ASCII chars   │`}</div>
+          <div>{`  │ geometry       │ "torusknot"|"sphere"|"cube"   │ "torus-  │ Shape type    │`}</div>
+          <div>{`  │                │ |"torus"|"cylinder"|"horse"   │  knot"   │               │`}</div>
+          <div>{`  │ modelUrl       │ string                        │ —        │ Custom GLTF   │`}</div>
+          <div>{`  │ modelScale     │ number                        │ —        │ Model scale   │`}</div>
+          <div>{`  │ color          │ string                        │ "#ffffff"│ Mesh color    │`}</div>
+          <div>{`  │ autoRotate     │ boolean                       │ true     │ Auto rotate   │`}</div>
+          <div>{`  │ rotationSpeed  │ number                        │ 1        │ Rotation spd  │`}</div>
+          <div>{`  │ enableControls │ boolean                       │ true     │ Orbit controls│`}</div>
+          <div>{`  │ invert         │ boolean                       │ false    │ Invert chars  │`}</div>
+          <div>{`  └────────────────┴───────────────────────────────┴──────────┴───────────────┘`}</div>
+          <div></div>
           <div>{`  Usage:`}</div>
           <div>{`  ┌──────────────────────────────────────────────────────────────────────────┐`}</div>
-          <div>{`  │ const renderer = new Ascii3DRenderer(el, {                               │`}</div>
-          <div>{`  │   geometry: 'torusknot',                                                 │`}</div>
-          <div>{`  │   width: 500, height: 300,                                               │`}</div>
-          <div>{`  │   charset: ' .:-+*=%@#',                                                 │`}</div>
-          <div>{`  │   autoRotate: true, enableControls: true                                 │`}</div>
-          <div>{`  │ });                                                                      │`}</div>
-          <div>{`  │ renderer.start();                                                        │`}</div>
+          <div>{`  │ import { Ascii3DRenderer }                                               │`}</div>
+          <div>{`  │   from "@/registry/new-york/ascii-3d-renderer/ascii-3d-renderer"        │`}</div>
+          <div>{`  │                                                                          │`}</div>
+          <div>{`  │ <Ascii3DRenderer                                                         │`}</div>
+          <div>{`  │   geometry="torusknot"                                                   │`}</div>
+          <div>{`  │   width={500}                                                            │`}</div>
+          <div>{`  │   height={300}                                                           │`}</div>
+          <div>{`  │   autoRotate={true}                                                      │`}</div>
+          <div>{`  │   enableControls={true}                                                  │`}</div>
+          <div>{`  │ />                                                                       │`}</div>
           <div>{`  └──────────────────────────────────────────────────────────────────────────┘`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
