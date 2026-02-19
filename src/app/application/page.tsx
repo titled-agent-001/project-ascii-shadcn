@@ -90,7 +90,7 @@ export default function ApplicationPage() {
           {/* ── Status bar (connected from table above) ── */}
           <div>{mid}</div>
           <div>{`║${pad("  Status:")}║`}</div>
-          <div>{`║  `}<AsciiProgressBar label="SYSTEM" value={73} width={40} animated />{pad("", W - 56)}{`║`}</div>
+          <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{`  `}<AsciiProgressBar label="SYSTEM" value={73} width={40} animated /></span>║</div>
           <div>{bot}</div>
 
           {/* ── Status panel (no bottom → connected to footer) ── */}
@@ -113,7 +113,7 @@ export default function ApplicationPage() {
 
           {/* ── Footer (connected from status panel) ── */}
           <div>{mid}</div>
-          <div className="flex"><span>║ </span><span className="flex-1"><InlineThemeSwitcher /></span><span>║</span></div>
+          <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{` `}<InlineThemeSwitcher /></span>║</div>
           <div>{mid}</div>
           <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
           <div>{bot}</div>
