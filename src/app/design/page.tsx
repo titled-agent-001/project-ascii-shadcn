@@ -58,12 +58,20 @@ function PlasmaBarSection({ width }: { width: number }) {
         }
       }
 
-      // Compose lines
+      // Compose lines: plasma + gap + ┌─chart─┐ with no vertical │ sides
+      const chartInner = CHART_W - 2; // space inside ┌─┐
       for (let y = 0; y < VIS_H; y++) {
         const p = plasma[y].join("");
         const gap = " ".repeat(GAP);
-        const c = chartGrid[y].join("");
-        const content = p + gap + c;
+        let chartLine: string;
+        if (y === 0) {
+          chartLine = "┌" + "─".repeat(chartInner) + "┐";
+        } else if (y === VIS_H - 1) {
+          chartLine = "└" + "─".repeat(chartInner) + "┘";
+        } else {
+          chartLine = chartGrid[y].slice(0, CHART_W).join("");
+        }
+        const content = p + gap + chartLine;
         const padded = content + " ".repeat(Math.max(0, width - content.length));
         lines.push("║" + padded + "║");
       }
