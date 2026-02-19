@@ -3,10 +3,45 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-banner";
-import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
 const W = 72;
+
+const WAVE_H = 6;
+
+function BorderedSineWave({ width }: { width: number }) {
+  const ref = useRef<HTMLPreElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let epoch = 0;
+
+    const render = () => {
+      const lines: string[] = [];
+      for (let row = 0; row < WAVE_H; row++) {
+        let line = "";
+        for (let col = 0; col < width; col++) {
+          const h = Math.max(0, Math.min(WAVE_H - 1, Math.round(WAVE_H / 2 + 0.6 * (
+            3.2 * Math.sin((0.5 * col + epoch) * 0.3) +
+            1.8 * Math.sin((0.5 * col + epoch) * 0.5) +
+            Math.sin((0.5 * col + epoch) * 0.7)
+          ))));
+          line += (WAVE_H - 1 - row <= h) ? "█" : " ";
+        }
+        lines.push("║" + line + "║");
+      }
+      el.textContent = lines.join("\n");
+      epoch += 0.5;
+    };
+
+    render();
+    const timer = setInterval(render, 100);
+    return () => clearInterval(timer);
+  }, [width]);
+
+  return <pre ref={ref} style={{ margin: 0, font: "inherit", lineHeight: "inherit" }} />;
+}
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -77,7 +112,7 @@ export default function InfoPage() {
           <div>{`║${pad("  Navigate with intention.")}║`}</div>
           <div>{inner}</div>
           <div>{mid}</div>
-          <SineWaveChart width={W} height={6} />
+          <BorderedSineWave width={W} />
           <div>{mid}</div>
           <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{` `}<InlineThemeSwitcher /></span>║</div>
           <div>{mid}</div>
