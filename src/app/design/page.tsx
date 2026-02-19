@@ -3,11 +3,82 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-banner";
-import { PlasmaOrb } from "@/registry/new-york/plasma-orb/plasma-orb";
-import { BarChart } from "@/registry/new-york/bar-chart/bar-chart";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
 const W = 72; // inner width between ║ borders
+const PLASMA_W = 17;
+const GAP = 2;
+const CHART_W = W - PLASMA_W - GAP;
+const VIS_H = 10;
+
+/** Renders plasma + bar chart as bordered ASCII lines */
+function PlasmaBarSection({ width }: { width: number }) {
+  const ref = useRef<HTMLPreElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // Plasma state
+    const plasmaChars = [" ", "░", "▒", "▓", "█"];
+    // Bar chart state
+    let epoch = 0;
+
+    const render = () => {
+      const lines: string[] = [];
+      // Generate plasma
+      const plasma: string[][] = [];
+      for (let y = 0; y < VIS_H; y++) {
+        const row: string[] = [];
+        for (let x = 0; x < PLASMA_W; x++) {
+          const v = Math.sin(x * 0.3 + epoch) * 0.5 +
+            Math.cos(y * 0.4 + epoch * 0.7) * 0.3 +
+            Math.sin((x + y) * 0.2 + epoch * 0.5) * 0.2;
+          const idx = Math.max(0, Math.min(plasmaChars.length - 1,
+            Math.floor((v + 1) / 2 * plasmaChars.length)));
+          row.push(plasmaChars[idx]);
+        }
+        plasma.push(row);
+      }
+
+      // Generate bar chart
+      const barCount = 9;
+      const barW = Math.max(1, Math.floor(CHART_W / barCount) - 1);
+      const barGap = Math.floor(CHART_W / barCount);
+      const chartGrid: string[][] = Array.from({ length: VIS_H }, () => Array(CHART_W).fill(" "));
+      for (let b = 0; b < barCount; b++) {
+        const x = barGap * b;
+        const h = Math.floor((0.4 * Math.sin((b + 0.1 * epoch) * 0.8) +
+          0.3 * Math.cos(1.3 * b + 0.15 * epoch) + 0.5) * VIS_H);
+        for (let row = 0; row < VIS_H; row++) {
+          if (VIS_H - 1 - row < h) {
+            for (let dx = 0; dx < barW && x + dx < CHART_W; dx++)
+              chartGrid[row][x + dx] = "█";
+          }
+        }
+      }
+
+      // Compose lines
+      for (let y = 0; y < VIS_H; y++) {
+        const p = plasma[y].join("");
+        const gap = " ".repeat(GAP);
+        const c = chartGrid[y].join("");
+        const content = p + gap + c;
+        const padded = content + " ".repeat(Math.max(0, width - content.length));
+        lines.push("║" + padded + "║");
+      }
+
+      el.textContent = lines.join("\n");
+      epoch += 0.15;
+    };
+
+    render();
+    const timer = setInterval(render, 100);
+    return () => clearInterval(timer);
+  }, [width]);
+
+  return <pre ref={ref} style={{ margin: 0, font: "inherit", lineHeight: "inherit" }} />;
+}
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -74,21 +145,7 @@ export default function DesignPage() {
           <div>{`║${pad("   └ Dark-first — designed for the void")}║`}</div>
           <div>{inner}</div>
           <div>{mid}</div>
-          <div style={{ display: "flex", width: `${W + 2}ch` }}>
-            <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
-            <div style={{ width: `${17}ch` }} className="shrink-0"><PlasmaOrb width={17} height={10} /></div>
-            <div style={{ width: "2ch" }} className="shrink-0">{" "}</div>
-            <div className="flex-1 min-w-0 flex">
-              <div className="shrink-0">{`┌${"│\n".repeat(8).trimEnd()}\n└`}</div>
-              <div className="flex-1 min-w-0">
-                <div>{`${"─".repeat(W - 23)}`}</div>
-                <BarChart width={W - 23} height={8} barCount={9} />
-                <div>{`${"─".repeat(W - 23)}`}</div>
-              </div>
-              <div className="shrink-0">{`┐${"│\n".repeat(8).trimEnd()}\n┘`}</div>
-            </div>
-            <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
-          </div>
+          <PlasmaBarSection width={W} />
           <div>{mid}</div>
           <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{` `}<InlineThemeSwitcher /></span>║</div>
           <div>{mid}</div>
