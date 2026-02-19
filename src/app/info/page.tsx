@@ -1,9 +1,43 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-banner";
-import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
+
+function WaveAnimation() {
+  const refs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useEffect(() => {
+    let e = 0;
+    const timer = setInterval(() => {
+      for (let row = 0; row < 6; row++) {
+        const el = refs.current[row];
+        if (!el) continue;
+        let line = "";
+        for (let col = 0; col < 58; col++) {
+          const height = Math.max(0, Math.min(5, Math.round(3 + 0.5 * (
+            2.5 * Math.sin((0.4 * col + e) * 0.3) +
+            1.5 * Math.sin((0.4 * col + e) * 0.5) +
+            Math.sin((0.4 * col + e) * 0.7)
+          ))));
+          line += (5 - row <= height) ? "█" : " ";
+        }
+        el.textContent = line;
+      }
+      e += 0.4;
+    }, 100);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <>
+      {Array.from({ length: 6 }, (_, i) => (
+        <div key={i}>{`>  ║ `}<span ref={(el) => { refs.current[i] = el; }}>{" ".repeat(58)}</span>{` ║`}</div>
+      ))}
+    </>
+  );
+}
 
 export default function InfoPage() {
   return (
@@ -33,9 +67,7 @@ export default function InfoPage() {
         <div>{`>  ║  Navigate with intention.                                  ║`}</div>
         <div>{`>  ║                                                            ║`}</div>
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
-        <div>{`>  ║`}</div>
-        <SineWaveChart width={58} height={6} />
-        <div>{`>  ║`}</div>
+        <WaveAnimation />
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
         <div>{`>  ║ `}<InlineThemeSwitcher />{`  ║`}</div>
         <div>{`>  ╠════════════════════════════════════════════════════════════╣`}</div>
