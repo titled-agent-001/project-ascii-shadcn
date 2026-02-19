@@ -79,7 +79,7 @@ export default function InfoPage() {
           <div>{mid}</div>
           <SineWaveChart width={W} height={6} />
           <div>{mid}</div>
-          <div>{`║ `}<InlineThemeSwitcher />{`║`}</div>
+          <div className="flex"><span>║ </span><span className="flex-1"><InlineThemeSwitcher /></span><span>║</span></div>
           <div>{mid}</div>
           <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
           <div>{bot}</div>

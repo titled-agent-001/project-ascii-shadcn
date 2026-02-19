@@ -5,9 +5,10 @@ export interface AsciiTableProps {
   rows: string[][];
   colWidths?: number[];
   width?: number;
+  noBottom?: boolean;
 }
 
-export function AsciiTable({ headers, rows, colWidths, width = 60 }: AsciiTableProps) {
+export function AsciiTable({ headers, rows, colWidths, width = 60, noBottom = false }: AsciiTableProps) {
   const cols = headers.length;
 
   const widths = colWidths || (() => {
@@ -37,7 +38,7 @@ export function AsciiTable({ headers, rows, colWidths, width = 60 }: AsciiTableP
   for (const row of rows) {
     lines.push("║" + row.map((c, i) => cell(c || "", widths[i])).join("│") + "║");
   }
-  lines.push(hLine("╚", "╧", "╝", "═"));
+  if (!noBottom) lines.push(hLine("╚", "╧", "╝", "═"));
 
   return <pre style={{ margin: 0, font: "inherit", lineHeight: "inherit" }}>{lines.join("\n")}</pre>;
 }

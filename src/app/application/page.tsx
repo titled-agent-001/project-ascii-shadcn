@@ -81,15 +81,16 @@ export default function ApplicationPage() {
               ["COGSEC SCANNER", "v1.7", "threat surface mapper"],
             ]}
             width={W + 2}
+            noBottom
           />
 
-          {/* ── Status bar ── */}
-          <div>{top}</div>
+          {/* ── Status bar (connected to table above) ── */}
+          <div>{mid}</div>
           <div>{`║${pad("  Status:")}║`}</div>
           <div>{`║  `}<AsciiProgressBar label="SYSTEM" value={73} width={40} animated />{pad("", W - 56)}{`║`}</div>
           <div>{bot}</div>
 
-          {/* ── Status panel (self-bordered) ── */}
+          {/* ── Status panel (self-bordered, connected) ── */}
           <StatusPanel
             entries={{
               "NETWORK": "ACTIVE",
@@ -105,7 +106,7 @@ export default function ApplicationPage() {
 
           {/* ── Footer ── */}
           <div>{top}</div>
-          <div>{`║ `}<InlineThemeSwitcher />{`║`}</div>
+          <div className="flex"><span>║ </span><span className="flex-1"><InlineThemeSwitcher /></span><span>║</span></div>
           <div>{mid}</div>
           <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
           <div>{bot}</div>
