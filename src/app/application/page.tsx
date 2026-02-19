@@ -10,6 +10,7 @@ import { StatusPanel } from "@/registry/new-york/status-panel/status-panel";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
 const W = 72;
+const BW = W + 2; // full border width including ║…║
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -70,42 +71,48 @@ export default function ApplicationPage() {
           <div>{inner}</div>
           <div>{bot}</div>
 
-          {/* ── Table (self-bordered) ── */}
-          <AsciiTable
-            headers={["Tool", "Version", "Description"]}
-            rows={[
-              ["NEURAL MAPPER", "v2.1", "cognitive topology"],
-              ["SIGNAL DECODER", "v1.4", "pattern recognition"],
-              ["MATTER ANALYZER", "v3.0", "structural decomposer"],
-              ["PLASMA RENDERER", "v0.9", "visualization engine"],
-              ["COGSEC SCANNER", "v1.7", "threat surface mapper"],
-            ]}
-            width={W + 2}
-            noBottom
-          />
+          {/* ── Table (self-bordered, no bottom → connected to status) ── */}
+          <div>
+            <AsciiTable
+              headers={["Tool", "Version", "Description"]}
+              rows={[
+                ["NEURAL MAPPER", "v2.1", "cognitive topology"],
+                ["SIGNAL DECODER", "v1.4", "pattern recognition"],
+                ["MATTER ANALYZER", "v3.0", "structural decomposer"],
+                ["PLASMA RENDERER", "v0.9", "visualization engine"],
+                ["COGSEC SCANNER", "v1.7", "threat surface mapper"],
+              ]}
+              width={BW}
+              noBottom
+            />
+          </div>
 
-          {/* ── Status bar (connected to table above) ── */}
+          {/* ── Status bar (connected from table above) ── */}
           <div>{mid}</div>
           <div>{`║${pad("  Status:")}║`}</div>
           <div>{`║  `}<AsciiProgressBar label="SYSTEM" value={73} width={40} animated />{pad("", W - 56)}{`║`}</div>
           <div>{bot}</div>
 
-          {/* ── Status panel (self-bordered, connected) ── */}
-          <StatusPanel
-            entries={{
-              "NETWORK": "ACTIVE",
-              "NODES": "47 ONLINE",
-              "LATENCY": "12ms",
-              "UPTIME": "99.97%",
-            }}
-            width={W + 2}
-          />
+          {/* ── Status panel (no bottom → connected to footer) ── */}
+          <div>
+            <StatusPanel
+              entries={{
+                "NETWORK": "ACTIVE",
+                "NODES": "47 ONLINE",
+                "LATENCY": "12ms",
+                "UPTIME": "99.97%",
+              }}
+              width={BW}
+              noBottom
+            />
+          </div>
 
           {/* ── Dot matrix ── */}
+          <div>{mid}</div>
           <DotMatrix text="ASCIISYSTEMS" speed={80} />
 
-          {/* ── Footer ── */}
-          <div>{top}</div>
+          {/* ── Footer (connected from status panel) ── */}
+          <div>{mid}</div>
           <div className="flex"><span>║ </span><span className="flex-1"><InlineThemeSwitcher /></span><span>║</span></div>
           <div>{mid}</div>
           <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
