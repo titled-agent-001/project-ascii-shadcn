@@ -9,6 +9,12 @@ import { DotMatrix } from "@/registry/new-york/dot-matrix/dot-matrix";
 import { StatusPanel } from "@/registry/new-york/status-panel/status-panel";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
+const W = 60;
+
+function pad(s: string, w = W) {
+  return s + " ".repeat(Math.max(0, w - s.length));
+}
+
 function Gutter({ contentRef }: { contentRef: React.RefObject<HTMLDivElement | null> }) {
   const [lines, setLines] = useState(30);
 
@@ -38,22 +44,29 @@ function Gutter({ contentRef }: { contentRef: React.RefObject<HTMLDivElement | n
 export default function ApplicationPage() {
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const top    = `╔${"═".repeat(W)}╗`;
+  const mid    = `╠${"═".repeat(W)}╣`;
+  const bot    = `╚${"═".repeat(W)}╝`;
+  const inner  = `║${" ".repeat(W)}║`;
+  const banTop = `║┌${"─".repeat(W - 2)}┐║`;
+  const banBot = `║└${"─".repeat(W - 2)}┘║`;
+
   return (
     <main className="preserve-spaces flex min-h-screen flex-col items-start justify-start p-4">
       <div className="w-full font-mono flex gap-[1ch]" style={{ lineHeight: 1 }}>
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
-          <div>{`╔════════════════════════════════════════════════════════════╗`}</div>
-          <div>{`║//APPLICATION                                            ...║`}</div>
-          <div>{`║...                                 useful utilities & tools║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║┌──────────────────────────────────────────────────────────┐║`}</div>
-          <div>{`║├─┤`}<BouncingBanner text="[APPLICATION]" width={54} />{`├─┤║`}</div>
-          <div>{`║└──────────────────────────────────────────────────────────┘║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║                                                            ║`}</div>
-          <div>{`║  Tools for navigating the information landscape:            ║`}</div>
-          <div>{`║                                                            ║`}</div>
+          <div>{top}</div>
+          <div>{`║${pad("//APPLICATION                                          ...")}║`}</div>
+          <div>{`║${pad("...                               useful utilities & tools")}║`}</div>
+          <div>{mid}</div>
+          <div>{banTop}</div>
+          <div>{`║├─┤`}<BouncingBanner text="[APPLICATION]" width={W - 6} />{`├─┤║`}</div>
+          <div>{banBot}</div>
+          <div>{mid}</div>
+          <div>{inner}</div>
+          <div>{`║${pad("  Tools for navigating the information landscape:")}║`}</div>
+          <div>{inner}</div>
           <AsciiTable
             headers={["Tool", "Version", "Description"]}
             rows={[
@@ -64,11 +77,11 @@ export default function ApplicationPage() {
               ["COGSEC SCANNER", "v1.7", "threat surface mapper"],
             ]}
           />
-          <div>{`║                                                            ║`}</div>
-          <div>{`║  Status:`}</div>
+          <div>{inner}</div>
+          <div>{`║${pad("  Status:")}║`}</div>
           <AsciiProgressBar label="SYSTEM" value={73} width={50} animated />
-          <div>{`║                                                            ║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
+          <div>{inner}</div>
+          <div>{mid}</div>
           <StatusPanel
             entries={{
               "NETWORK": "ACTIVE",
@@ -76,15 +89,15 @@ export default function ApplicationPage() {
               "LATENCY": "12ms",
               "UPTIME": "99.97%",
             }}
-            width={60}
+            width={W}
           />
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
+          <div>{mid}</div>
           <DotMatrix text="ASCIISYSTEMS" speed={80} />
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║ `}<InlineThemeSwitcher />{`  ║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{`                                                      ║`}</div>
-          <div>{`╚════════════════════════════════════════════════════════════╝`}</div>
+          <div>{mid}</div>
+          <div>{`║ `}<InlineThemeSwitcher />{`║`}</div>
+          <div>{mid}</div>
+          <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
+          <div>{bot}</div>
         </div>
       </div>
     </main>

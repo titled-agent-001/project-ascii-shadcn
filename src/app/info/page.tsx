@@ -6,6 +6,12 @@ import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-ban
 import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
+const W = 60;
+
+function pad(s: string, w = W) {
+  return s + " ".repeat(Math.max(0, w - s.length));
+}
+
 function Gutter({ contentRef }: { contentRef: React.RefObject<HTMLDivElement | null> }) {
   const [lines, setLines] = useState(30);
 
@@ -35,41 +41,48 @@ function Gutter({ contentRef }: { contentRef: React.RefObject<HTMLDivElement | n
 export default function InfoPage() {
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const top    = `╔${"═".repeat(W)}╗`;
+  const mid    = `╠${"═".repeat(W)}╣`;
+  const bot    = `╚${"═".repeat(W)}╝`;
+  const inner  = `║${" ".repeat(W)}║`;
+  const banTop = `║┌${"─".repeat(W - 2)}┐║`;
+  const banBot = `║└${"─".repeat(W - 2)}┘║`;
+
   return (
     <main className="preserve-spaces flex min-h-screen flex-col items-start justify-start p-4">
       <div className="w-full font-mono flex gap-[1ch]" style={{ lineHeight: 1 }}>
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
-          <div>{`╔════════════════════════════════════════════════════════════╗`}</div>
-          <div>{`║//INFO                                                   ...║`}</div>
-          <div>{`║...                 a Digital Labyrinth of Thoughts & Concepts║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║┌──────────────────────────────────────────────────────────┐║`}</div>
-          <div>{`║├─┤`}<BouncingBanner text="[INFO]" width={54} />{`├─┤║`}</div>
-          <div>{`║└──────────────────────────────────────────────────────────┘║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║                                                            ║`}</div>
-          <div>{`║  ASCII Systems is a neural architecture research            ║`}</div>
-          <div>{`║  initiative focused on the convergence of cognitive         ║`}</div>
-          <div>{`║  security and artificial consciousness.                     ║`}</div>
-          <div>{`║                                                            ║`}</div>
-          <div>{`║  We operate at the intersection of:                        ║`}</div>
-          <div>{`║   ├ Autonomous intelligence frameworks                     ║`}</div>
-          <div>{`║   ├ Information analysis systems                           ║`}</div>
-          <div>{`║   ├ CogSec methodologies                                   ║`}</div>
-          <div>{`║   └ Liquid design paradigms                                ║`}</div>
-          <div>{`║                                                            ║`}</div>
-          <div>{`║  The digital labyrinth extends infinitely inward.          ║`}</div>
-          <div>{`║  Every thought is a node. Every concept, an edge.          ║`}</div>
-          <div>{`║  Navigate with intention.                                  ║`}</div>
-          <div>{`║                                                            ║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <SineWaveChart width={60} height={6} />
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║ `}<InlineThemeSwitcher />{`  ║`}</div>
-          <div>{`╠════════════════════════════════════════════════════════════╣`}</div>
-          <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{`                                                      ║`}</div>
-          <div>{`╚════════════════════════════════════════════════════════════╝`}</div>
+          <div>{top}</div>
+          <div>{`║${pad("//INFO                                                 ...")}║`}</div>
+          <div>{`║${pad("...               a Digital Labyrinth of Thoughts & Concepts")}║`}</div>
+          <div>{mid}</div>
+          <div>{banTop}</div>
+          <div>{`║├─┤`}<BouncingBanner text="[INFO]" width={W - 6} />{`├─┤║`}</div>
+          <div>{banBot}</div>
+          <div>{mid}</div>
+          <div>{inner}</div>
+          <div>{`║${pad("  ASCII Systems is a neural architecture research")}║`}</div>
+          <div>{`║${pad("  initiative focused on the convergence of cognitive")}║`}</div>
+          <div>{`║${pad("  security and artificial consciousness.")}║`}</div>
+          <div>{inner}</div>
+          <div>{`║${pad("  We operate at the intersection of:")}║`}</div>
+          <div>{`║${pad("   ├ Autonomous intelligence frameworks")}║`}</div>
+          <div>{`║${pad("   ├ Information analysis systems")}║`}</div>
+          <div>{`║${pad("   ├ CogSec methodologies")}║`}</div>
+          <div>{`║${pad("   └ Liquid design paradigms")}║`}</div>
+          <div>{inner}</div>
+          <div>{`║${pad("  The digital labyrinth extends infinitely inward.")}║`}</div>
+          <div>{`║${pad("  Every thought is a node. Every concept, an edge.")}║`}</div>
+          <div>{`║${pad("  Navigate with intention.")}║`}</div>
+          <div>{inner}</div>
+          <div>{mid}</div>
+          <SineWaveChart width={W} height={6} />
+          <div>{mid}</div>
+          <div>{`║ `}<InlineThemeSwitcher />{`║`}</div>
+          <div>{mid}</div>
+          <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
+          <div>{bot}</div>
         </div>
       </div>
     </main>
