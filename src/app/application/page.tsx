@@ -109,7 +109,7 @@ export default function ApplicationPage() {
 
           {/* ── Dot matrix ── */}
           <div>{mid}</div>
-          <DotMatrix text="ASCIISYSTEMS" speed={80} />
+          <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}><DotMatrix text="ASCIISYSTEMS" speed={80} /></span>║</div>
 
           {/* ── Footer (connected from status panel) ── */}
           <div>{mid}</div>
