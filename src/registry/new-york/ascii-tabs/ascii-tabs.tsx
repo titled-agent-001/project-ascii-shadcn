@@ -202,11 +202,7 @@ export function AsciiTabs({
           <div>{padLine("")}</div>
         </div>
       ) : (
-        <div className="flex">
-          <span>{v}</span>
-          <div className="flex-1 px-2 py-1">{tabs[active].content}</div>
-          <span>{v}</span>
-        </div>
+        <div>{tabs[active].content}</div>
       )}
 
       {/* Bottom border */}

@@ -33,27 +33,21 @@ const portrait = [
   "@%-:::-:::++======+==+#%%%%%@@@@@@@%%%%%%%%%=-::+=:=#%%%@@*-",
 ];
 
-function PortraitAnimation({ width }: { width: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+function PortraitAnimation({ width, border = "│" }: { width: number; border?: string }) {
+  const ref = useRef<HTMLPreElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    el.innerHTML = "";
-    const portRows: HTMLDivElement[] = [];
-    for (let i = 0; i < portrait.length; i++) {
-      const row = document.createElement("div");
-      portRows.push(row);
-      el.appendChild(row);
-    }
     const dotChars = [".", "░", "▒", "▓"];
-    const portWidth = width - 2;
+    const innerW = width - 2; // space between borders
     let e3 = 0;
     const render = () => {
+      const lines: string[] = [];
       for (let r = 0; r < portrait.length; r++) {
         const orig = portrait[r];
         let line = "";
-        for (let c = 0; c < portWidth; c++) {
+        for (let c = 0; c < innerW; c++) {
           if (c < orig.length) {
             if (orig[c] === ".") {
               const noise = Math.sin(c * 0.3 + r * 0.5 + e3) * 0.5 +
@@ -72,16 +66,17 @@ function PortraitAnimation({ width }: { width: number }) {
             line += dotChars[idx];
           }
         }
-        portRows[r].textContent = line;
+        lines.push(border + line + border);
       }
+      el.textContent = lines.join("\n");
       e3 += 0.15;
     };
     render();
     const timer = setInterval(render, 100);
     return () => clearInterval(timer);
-  }, [width]);
+  }, [width, border]);
 
-  return <div ref={ref} />;
+  return <pre ref={ref} style={{ margin: 0, font: "inherit", lineHeight: "inherit" }} />;
 }
 
 function ChartCard({ title, spanWidth, children }: { title: string; spanWidth: number; children: React.ReactNode }) {
