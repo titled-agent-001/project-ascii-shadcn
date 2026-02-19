@@ -54,13 +54,15 @@ export default function ComponentsPage() {
           <div>{`  Demo: (see header above ↑)`}</div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/bouncing-banner.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/bouncing-banner/bouncing-banner.tsx`}</div>
-          <div>{`    →  components/bouncing-banner.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/bouncing-banner.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/bouncing-banner/bouncing-banner.tsx\n  →  components/bouncing-banner.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -97,13 +99,15 @@ export default function ComponentsPage() {
           <div>{`  ├─┤`}<GradientBanner text="[GRADIENT]" width={50} />{`├─┤`}</div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/gradient-banner.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/gradient-banner/gradient-banner.tsx`}</div>
-          <div>{`    →  components/gradient-banner.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/gradient-banner.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/gradient-banner/gradient-banner.tsx\n  →  components/gradient-banner.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -140,13 +144,15 @@ export default function ComponentsPage() {
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><SineWaveChart width={40} height={8} /></div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/sine-wave.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/sine-wave/sine-wave.tsx`}</div>
-          <div>{`    →  components/sine-wave.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/sine-wave.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/sine-wave/sine-wave.tsx\n  →  components/sine-wave.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -183,13 +189,15 @@ export default function ComponentsPage() {
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><BarChart width={40} height={8} barCount={10} /></div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/bar-chart.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/bar-chart/bar-chart.tsx`}</div>
-          <div>{`    →  components/bar-chart.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/bar-chart.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/bar-chart/bar-chart.tsx\n  →  components/bar-chart.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -227,13 +235,15 @@ export default function ComponentsPage() {
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><PlasmaOrb width={20} height={12} /></div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/plasma-orb.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/plasma-orb/plasma-orb.tsx`}</div>
-          <div>{`    →  components/plasma-orb.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/plasma-orb.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/plasma-orb/plasma-orb.tsx\n  →  components/plasma-orb.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -270,13 +280,15 @@ export default function ComponentsPage() {
           <div className="demo-block" style={{ margin: ".25rem 0 .5rem 2ch" }}><DotMatrix text={dotText} /></div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/dot-matrix.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/dot-matrix/dot-matrix.tsx`}</div>
-          <div>{`    →  components/dot-matrix.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/dot-matrix.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/dot-matrix/dot-matrix.tsx\n  →  components/dot-matrix.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -318,13 +330,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/ascii-card.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/ascii-card/ascii-card.tsx`}</div>
-          <div>{`    →  components/ascii-card.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-card.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/ascii-card/ascii-card.tsx\n  →  components/ascii-card.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -377,13 +391,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/ascii-table.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/ascii-table/ascii-table.tsx`}</div>
-          <div>{`    →  components/ascii-table.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-table.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/ascii-table/ascii-table.tsx\n  →  components/ascii-table.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -426,13 +442,15 @@ export default function ComponentsPage() {
           <div>{`  `}<AsciiProgressBar value={100} width={30} label="LOADING" animated speed={40} /></div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/progress-bar.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/progress-bar/progress-bar.tsx`}</div>
-          <div>{`    →  components/progress-bar.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/progress-bar.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/progress-bar/progress-bar.tsx\n  →  components/progress-bar.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -475,13 +493,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/status-panel.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/status-panel/status-panel.tsx`}</div>
-          <div>{`    →  components/status-panel.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/status-panel.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/status-panel/status-panel.tsx\n  →  components/status-panel.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -528,13 +548,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/nav-menu.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/nav-menu/nav-menu.tsx`}</div>
-          <div>{`    →  components/nav-menu.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/nav-menu.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/nav-menu/nav-menu.tsx\n  →  components/nav-menu.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -577,13 +599,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/theme-switcher.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/theme-switcher/theme-switcher.tsx`}</div>
-          <div>{`    →  components/theme-switcher.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/theme-switcher.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/theme-switcher/theme-switcher.tsx\n  →  components/theme-switcher.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -624,13 +648,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/ascii-input.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/ascii-input/ascii-input.tsx`}</div>
-          <div>{`    →  components/ascii-input.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-input.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/ascii-input/ascii-input.tsx\n  →  components/ascii-input.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -684,15 +710,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/ascii-3d-renderer.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/ascii-3d-renderer/ascii-3d-renderer.tsx`}</div>
-          <div>{`    →  components/ascii-3d-renderer.tsx`}</div>
-          <div></div>
-          <div>{`  Requires: npm install three @types/three`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-3d-renderer.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/ascii-3d-renderer/ascii-3d-renderer.tsx\n  →  components/ascii-3d-renderer.tsx\n\nRequires: npm install three @types/three` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
@@ -765,13 +791,15 @@ export default function ComponentsPage() {
           </div>
           <div></div>
           <div>{`  Installation:`}</div>
-          <div></div>
-          <div>{`  CLI:`}</div>
-          <div>{`  npx shadcn add "${BASE}/r/ascii-tabs.json"`}</div>
-          <div></div>
-          <div>{`  Manual:`}</div>
-          <div>{`  Copy: registry/new-york/ascii-tabs/ascii-tabs.tsx`}</div>
-          <div>{`    →  components/ascii-tabs.tsx`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-tabs.json"` },
+                { label: "Manual", content: `Copy: registry/new-york/ascii-tabs/ascii-tabs.tsx\n  →  components/ascii-tabs.tsx` },
+              ]}
+              width={70}
+            />
+          </div>
           <div></div>
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
