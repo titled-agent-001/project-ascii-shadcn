@@ -1,65 +1,307 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useRef } from "react";
+import { BouncingBanner } from "@/components/ascii/bouncing-banner";
+import { GradientBanner } from "@/components/ascii/gradient-banner";
+import { SineWaveChart } from "@/components/ascii/sine-wave";
+import { BarChart } from "@/components/ascii/bar-chart";
+import { PlasmaOrb } from "@/components/ascii/plasma-orb";
+import { ThemeSwitcher } from "@/components/ascii/theme-switcher";
+import { measureCharWidth } from "@/components/ascii/measure";
+import { useState } from "react";
+
+const portrait = [
+  "@@%%%%*#@@@%%%%%%%%%%%%@@@@%%%%%%%#%%%%%%%%%=...............",
+  "%%%%%##%%@@%%%%%%%%%%@@@@@@@@@@@%%#%%%%%%%%%=...............",
+  "%%%%#+*#%%%%%%%%%%%@@@%##*#%%%%%%++**#%%#%%%+...............",
+  "%%###%#*#%%%%%%%%%@@@@@%*---=:=:=%+*+===+#%#-...............",
+  "%#@@%+==+%@%%%%%%%@@@@@@@@%##*%%@@@@#==-===-................",
+  "%%%@#===+%@@%%%%%%@@@@@@@@@@@#*%@@@%#=......................",
+  "%%**%#+==+#%%%%%%%@@@@@@@@@@@@@%@@@@%=......................",
+  "%#*+##%%*=*%%%%%%%@@@@@@@@@@@@@@@@@@@%#=....................",
+  "%#+++=*%%%%@@%%%%%@@@@@@@@@@@@@@@@@@@@@%#:..................",
+  "%#++*%%%%@%%@%%%%%@@@@@@@@@@@@@@%#=......................",
+  "%#++%@@##%*+#%%%%%@@@@@@@@@@@@@@@@@@@#-...............:=%@=:",
+  "%#+*@%#***%*+*%%%%@@@@@@@@@@@@@@@@@%%*:.............:-*#@@+:",
+  "+%+*@@@%#%@%*=+%%%@@@@@@@@@@@@@@@%%#+:.............-*%%%@@+:",
+  ":-=+*%@@@@@@@+=*%%%@@@@@@@@@@@@@@@@#:.............:=%%%*=-:.",
+  ":::---=%%@@@@%+=*#==+#%%@@@@@@@@@@@*..............:=%%#=::..",
+  "::::::--*%@@@%+=*#======+#%%%@@@@@%#:..............-=-:=%%=:",
+  "%-:::::--+%%#====#======-===+*#%%%%%%%%%%%*:...:++::-=+#@@*:",
+  "@%-:::-:::++======+==+#%%%%%@@@@@@@%%%%%%%%%=-::+=:=#%%%@@*-",
+];
+
+function PortraitAnimation({ width }: { width: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.innerHTML = "";
+    const portRows: HTMLDivElement[] = [];
+    for (let i = 0; i < portrait.length; i++) {
+      const row = document.createElement("div");
+      portRows.push(row);
+      el.appendChild(row);
+    }
+    const dotChars = [".", "░", "▒", "▓"];
+    const portWidth = width - 2;
+    let e3 = 0;
+    const render = () => {
+      for (let r = 0; r < portrait.length; r++) {
+        const orig = portrait[r];
+        let line = "║";
+        for (let c = 0; c < portWidth; c++) {
+          if (c < orig.length) {
+            if (orig[c] === ".") {
+              const noise = Math.sin(c * 0.3 + r * 0.5 + e3) * 0.5 +
+                Math.cos(c * 0.2 - r * 0.3 + e3 * 0.7) * 0.3 +
+                Math.sin((c + r) * 0.15 + e3 * 0.5) * 0.2;
+              const idx = Math.max(0, Math.min(dotChars.length - 1, Math.floor((noise + 1) / 2 * dotChars.length)));
+              line += dotChars[idx];
+            } else {
+              line += orig[c];
+            }
+          } else {
+            const noise = Math.sin(c * 0.3 + r * 0.5 + e3) * 0.5 +
+              Math.cos(c * 0.2 - r * 0.3 + e3 * 0.7) * 0.3 +
+              Math.sin((c + r) * 0.15 + e3 * 0.5) * 0.2;
+            const idx = Math.max(0, Math.min(dotChars.length - 1, Math.floor((noise + 1) / 2 * dotChars.length)));
+            line += dotChars[idx];
+          }
+        }
+        line += "║";
+        portRows[r].textContent = line;
+      }
+      e3 += 0.15;
+    };
+    render();
+    const timer = setInterval(render, 100);
+    return () => clearInterval(timer);
+  }, [width]);
+
+  return <div ref={ref} />;
+}
+
+function ChartCard({ title, spanWidth, children }: { title: string; spanWidth: number; children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div>
+      <div>{"┌" + "─".repeat(spanWidth + 4) + "┐"}</div>
+      <div>
+        {"├─┤"}
+        <BouncingBanner text={title} width={spanWidth} />
+        {"├─┤"}
+      </div>
+      {children}
+      <div>{"└" + "─".repeat(spanWidth + 4) + "┘"}</div>
     </div>
+  );
+}
+
+export default function HomePage() {
+  const layoutRef = useRef<HTMLDivElement>(null);
+  const [W, setW] = useState(78);
+
+  useEffect(() => {
+    const el = layoutRef.current;
+    if (!el) return;
+    const measure = () => {
+      const { cols } = measureCharWidth(el);
+      setW(cols);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const H = "═";
+  const V = "║";
+  const inner = W - 4;
+  const hline = (l: string, r: string) => l + H.repeat(W - 2) + r;
+  const pad = (text: string) => {
+    return text.split("\n").map((line) => {
+      const t = line.substring(0, inner);
+      return `${V} ${t}${" ".repeat(Math.max(0, inner - t.length))} ${V}`;
+    }).join("\n");
+  };
+
+  const homeTitle = "//HOME" + " ".repeat(Math.max(0, inner - 6 - 3)) + "...";
+  const homeSub = "..." + " ".repeat(Math.max(0, inner - 3 - "the beginning of sanctuary".length)) + "the beginning of sanctuary";
+
+  const descLines = [
+    "",
+    "Neural architect specializing in AI intelligence frameworks",
+    "Designing autonomous systems for information analysis   ...",
+    "CogSec meets artificial consciousness                  ...",
+    "where design becomes liquid, and appeal flows in a new state",
+  ];
+
+  const menuLines = [
+    " ├ INFO – a Digital Labyrinth of Thoughts & Concepts",
+    " ├ DESIGN – Design Concepts",
+    " └ APPLICATION – useful utilities & tools",
+  ];
+
+  const navTitle = "//NAVIGATION MENU" + " ".repeat(Math.max(0, inner - 17 - 3)) + "...";
+  const bSpanW = W - 10;
+  const clearSpanW = W - 10;
+  const cpSpanW = W - 6;
+
+  // Chart card width: each chart takes ~1/3 of W
+  // We'll use a fixed reasonable width for the chart banners
+  const chartSpanW = Math.max(8, Math.floor(W / 3) - 6);
+  const chartW = chartSpanW + 4; // width inside the card borders
+
+  return (
+    <main className="p-4">
+      <div
+        ref={layoutRef}
+        style={{
+          width: "100%",
+          fontFamily: "Menlo, Consolas, 'Courier New', monospace",
+          whiteSpace: "normal",
+          lineHeight: 1,
+          fontSize: "min(12px, calc((100vw - 2rem) / 46.8))",
+          gap: 0,
+        }}
+        className="home-layout"
+      >
+        {/* 1. Home header */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          {hline("╔", "╗") + "\n" + pad(homeTitle + "\n" + homeSub) + "\n" + hline("╠", "╣")}
+        </div>
+
+        {/* 2. Shimazu banner */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          <div>{V + " ┌" + "─".repeat(W - 6) + "┐ " + V}</div>
+          <div>
+            {V + " ├─┤"}
+            <BouncingBanner text="[SHIMAZUSYSTEMS]" width={bSpanW} />
+            {"├─┤ " + V}
+          </div>
+          <div>{V + " └" + "─".repeat(W - 6) + "┘ " + V}</div>
+          <div>{hline("╠", "╣")}</div>
+        </div>
+
+        {/* 3. Description */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          {pad(descLines.join("\n")) + "\n" + hline("╠", "╣")}
+        </div>
+
+        {/* 4. System status */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          {pad("// SYSTEM STATUS\nVersion: 2025.1") + "\n" + hline("╠", "╣")}
+        </div>
+
+        {/* 5. Portrait animation */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          <PortraitAnimation width={W} />
+          <div>{hline("╠", "╣")}</div>
+        </div>
+
+        {/* 6. Mobile disclaimer */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          {pad("[MOBILE USER DISCLAIMER]: RENDERING NOT OPTIMISED FOR MOBILE") + "\n" + hline("╚", "╝")}
+        </div>
+
+        {/* 7. Navigation header + clear banner */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          {hline("╔", "╗") + "\n" + pad(navTitle) + "\n" + hline("╠", "╣")}
+          {"\n"}
+          <div>{V + " ┌" + "─".repeat(W - 6) + "┐ " + V}</div>
+          <div>
+            {V + " ├─┤"}
+            <GradientBanner text="[CLEAR]" width={clearSpanW} />
+            {"├─┤ " + V}
+          </div>
+          <div>{V + " └" + "─".repeat(W - 6) + "┘ " + V}</div>
+          <div>{hline("╠", "╣")}</div>
+        </div>
+
+        {/* 8. Nav menu items */}
+        <div
+          className="section section-full"
+          style={{ whiteSpace: "pre", cursor: "pointer" }}
+          onClick={(e) => {
+            const text = (e.target as HTMLElement).textContent || "";
+            if (text.includes("INFO")) window.location.href = "/info";
+            else if (text.includes("DESIGN")) window.location.href = "/design";
+            else if (text.includes("APPLICATION")) window.location.href = "/application";
+          }}
+        >
+          {pad(menuLines.join("\n")) + "\n" + hline("╚", "╝")}
+        </div>
+
+        {/* 9. Charts row */}
+        <div className="charts-row section-full" style={{ whiteSpace: "pre" }}>
+          <div className="section" style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
+            <ChartCard title="[SIGNAL]" spanWidth={chartSpanW}>
+              <SineWaveChart width={chartW} height={8} />
+            </ChartCard>
+          </div>
+          <div className="section" style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
+            <ChartCard title="[MATTER]" spanWidth={chartSpanW}>
+              <BarChart width={chartW} height={8} barCount={8} />
+            </ChartCard>
+          </div>
+          <div className="section" style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
+            <div>
+              <div>{"┌" + "─".repeat(chartW) + "┐"}</div>
+              <PlasmaOrb width={chartW + 2} height={10} />
+              <div>{"└" + "─".repeat(chartW) + "┘"}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* 10. Control panel */}
+        <div className="section section-full" style={{ whiteSpace: "pre" }}>
+          <div>{"┌" + "─".repeat(W - 2) + "┐"}</div>
+          <div>
+            {"├─┤"}
+            <BouncingBanner text="[CONTROL-PANEL]" width={cpSpanW} />
+            {"├─┤"}
+          </div>
+          <div>{"├─┬" + "─".repeat(W - 6) + "┬─┤"}</div>
+          <ThemeSwitcher width={W - 4} />
+          <div>{"└" + "─".repeat(W - 2) + "┘"}</div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .home-layout {
+          width: 100%;
+          font-family: Menlo, Consolas, 'Courier New', monospace;
+          white-space: normal;
+          line-height: 1;
+          font-size: min(12px, calc((100vw - 2rem) / 46.8));
+          gap: 0;
+        }
+        .section {
+          overflow: hidden;
+          min-width: 0;
+          white-space: pre;
+          padding: 0;
+          margin: 0;
+          line-height: 1;
+        }
+        .section div, .section { display: block; }
+        .section *, .section div, .section span {
+          margin: 0; padding: 0; line-height: 1;
+          font-family: inherit; font-size: inherit;
+        }
+        .charts-row { display: flex; gap: 0; }
+        .charts-row > .section { flex: 1; min-width: 0; }
+        @media (min-width: 640px) {
+          .home-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            font-size: min(12px, calc((100vw - 2rem) / 93.6));
+          }
+          .section-full { grid-column: 1 / -1; }
+          .charts-row { grid-column: 1 / -1; }
+        }
+      `}</style>
+    </main>
   );
 }

@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*, :after, :before {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root, body {
+  background-color: #000000;
+  color: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  line-height: inherit;
+  font-family: Menlo, Consolas, 'Courier New', monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.preserve-spaces {
+  white-space: pre;
+}
+
+.font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
+.font-bold { font-weight: 700; }
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+}
+
+/* Theme styles */
+html.theme-m.mode-night, html.theme-m.mode-night body { background-color: #000000 !important; color: #ffffff !important; }
+html.theme-g.mode-night, html.theme-g.mode-night body { background-color: #000000 !important; color: #00ff00 !important; }
+html.theme-r.mode-night, html.theme-r.mode-night body { background-color: #000000 !important; color: #ff3333 !important; }
+html.theme-b.mode-night, html.theme-b.mode-night body { background-color: #000000 !important; color: #3399ff !important; }
+html.theme-o.mode-night, html.theme-o.mode-night body { background-color: #000000 !important; color: #ff9933 !important; }
+
+html.theme-m.mode-day, html.theme-m.mode-day body { background-color: #ffffff !important; color: #000000 !important; }
+html.theme-g.mode-day, html.theme-g.mode-day body { background-color: #e6ffe6 !important; color: #006600 !important; }
+html.theme-r.mode-day, html.theme-r.mode-day body { background-color: #ffe6e6 !important; color: #990000 !important; }
+html.theme-b.mode-day, html.theme-b.mode-day body { background-color: #e6f2ff !important; color: #003366 !important; }
+html.theme-o.mode-day, html.theme-o.mode-day body { background-color: #fff2e6 !important; color: #663300 !important; }
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+a, button {
+  color: inherit;
+}
+
+/* Demo blocks for multi-line components */
+.demo-block {
+  white-space: pre;
+}
+
+/* Responsive monospace sizing for full-page ASCII layouts */
+.preserve-spaces {
+  font-size: min(12px, calc((100vw - 2rem) / 46.8));
 }
