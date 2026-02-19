@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-table",
+  "title": "ASCII Table",
+  "description": "A data table rendered with Unicode box-drawing characters (double borders). Supports headers, rows, and auto-calculated or custom column widths.",
+  "files": [
+    {
+      "path": "src/registry/new-york/ascii-table/ascii-table.tsx",
+      "content": "\"use client\";\n\nexport interface AsciiTableProps {\n  headers: string[];\n  rows: string[][];\n  colWidths?: number[];\n  width?: number;\n}\n\nexport function AsciiTable({ headers, rows, colWidths, width = 60 }: AsciiTableProps) {\n  const cols = headers.length;\n\n  const widths = colWidths || (() => {\n    const natural = headers.map((h, i) => {\n      let max = h.length;\n      for (const row of rows) if (row[i] && row[i].length > max) max = row[i].length;\n      return max + 2;\n    });\n    const usedByBorders = cols - 1 + 2;\n    const available = width - usedByBorders;\n    const naturalSum = natural.reduce((a, b) => a + b, 0);\n    if (naturalSum <= available) {\n      const extra = available - naturalSum;\n      return natural.map((w, i) => w + (i === cols - 1 ? extra : 0));\n    }\n    return natural;\n  })();\n\n  const cell = (text: string, w: number) => ` ${text}${\" \".repeat(Math.max(0, w - text.length - 2))} `;\n  const hLine = (l: string, m: string, r: string, f: string) =>\n    l + widths.map((w) => f.repeat(w)).join(m) + r;\n\n  const lines: string[] = [];\n  lines.push(hLine(\"╔\", \"╤\", \"╗\", \"═\"));\n  lines.push(\"║\" + headers.map((h, i) => cell(h, widths[i])).join(\"│\") + \"║\");\n  lines.push(hLine(\"╠\", \"╪\", \"╣\", \"═\"));\n  for (const row of rows) {\n    lines.push(\"║\" + row.map((c, i) => cell(c || \"\", widths[i])).join(\"│\") + \"║\");\n  }\n  lines.push(hLine(\"╚\", \"╧\", \"╝\", \"═\"));\n\n  return <pre style={{ margin: 0, font: \"inherit\", lineHeight: \"inherit\" }}>{lines.join(\"\\n\")}</pre>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

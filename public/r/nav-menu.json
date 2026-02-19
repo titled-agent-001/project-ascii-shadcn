@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "nav-menu",
+  "title": "Nav Menu",
+  "description": "A navigation menu using tree-drawing characters (├ └) with linked labels and descriptions. Uses Next.js Link for routing.",
+  "files": [
+    {
+      "path": "src/registry/new-york/nav-menu/nav-menu.tsx",
+      "content": "\"use client\";\n\nimport Link from \"next/link\";\n\nexport interface NavMenuItem {\n  label: string;\n  description: string;\n  href: string;\n}\n\nexport interface NavMenuProps {\n  items: NavMenuItem[];\n}\n\nexport function NavMenu({ items }: NavMenuProps) {\n  return (\n    <div>\n      {items.map((item, i) => {\n        const prefix = i < items.length - 1 ? \"├\" : \"└\";\n        return (\n          <div key={item.label}>\n            <Link href={item.href} className=\"hover:underline transition-colors\" style={{ textDecoration: \"none\", color: \"inherit\" }}>\n              {` ${prefix} ${item.label}`}\n            </Link>\n            {` ─ ${item.description}`}\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

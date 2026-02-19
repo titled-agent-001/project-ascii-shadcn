@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plasma-orb",
+  "title": "Plasma Orb",
+  "description": "An animated plasma orb effect using ░▒▓█ density characters with radial sine wave patterns. Configurable width, height, and speed.",
+  "files": [
+    {
+      "path": "src/registry/new-york/plasma-orb/plasma-orb.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\n\nexport interface PlasmaOrbProps {\n  width?: number;\n  height?: number;\n  speed?: number;\n}\n\nexport function PlasmaOrb({ width = 15, height = 10, speed = 120 }: PlasmaOrbProps) {\n  const ref = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const el = ref.current;\n    if (!el) return;\n    el.innerHTML = \"\";\n    const chars = [\" \", \"░\", \"▒\", \"▓\", \"█\"];\n    const rows: HTMLDivElement[] = [];\n    for (let i = 0; i < height; i++) {\n      const row = document.createElement(\"div\");\n      rows.push(row);\n      el.appendChild(row);\n    }\n    let e = 0;\n    const cx = width / 2, cy = height / 2;\n    const render = () => {\n      for (let row = 0; row < height; row++) {\n        let line = \"\";\n        for (let col = 0; col < width; col++) {\n          const x = col - cx, y = row - cy;\n          const dist = Math.sqrt(x * x + y * y);\n          const val = Math.floor((\n            0.5 * Math.sin(0.8 * dist - 0.5 * e) +\n            0.3 * Math.sin(1.2 * dist - 0.3 * e) +\n            0.2 * Math.cos(0.5 * dist - 0.4 * e) +\n            0.3 * Math.sin(0.3 * e) +\n            0.15 * Math.sin(3 * Math.atan2(y, x) + 0.2 * e) + 1.5\n          ) / 3 * chars.length);\n          line += chars[Math.max(0, Math.min(chars.length - 1, val))];\n        }\n        rows[row].textContent = line;\n      }\n      e += 0.15;\n    };\n    render();\n    const timer = setInterval(render, speed);\n    return () => clearInterval(timer);\n  }, [width, height, speed]);\n\n  return <div ref={ref} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

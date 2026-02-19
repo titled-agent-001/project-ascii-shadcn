@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sine-wave",
+  "title": "Sine Wave Chart",
+  "description": "An animated sine wave visualization using █ block characters. Configurable width, height, and animation speed.",
+  "files": [
+    {
+      "path": "src/registry/new-york/sine-wave/sine-wave.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\n\nexport interface SineWaveProps {\n  width?: number;\n  height?: number;\n  speed?: number;\n}\n\nexport function SineWaveChart({ width = 40, height = 8, speed = 100 }: SineWaveProps) {\n  const ref = useRef<HTMLDivElement>(null);\n\n  useEffect(() => {\n    const el = ref.current;\n    if (!el) return;\n    el.innerHTML = \"\";\n    const rows: HTMLDivElement[] = [];\n    for (let i = 0; i < height; i++) {\n      const row = document.createElement(\"div\");\n      rows.push(row);\n      el.appendChild(row);\n    }\n    let e = 0;\n    const render = () => {\n      for (let row = 0; row < height; row++) {\n        let line = \"\";\n        for (let col = 0; col < width; col++) {\n          const h = Math.max(0, Math.min(height - 1, Math.round(height / 2 + 0.6 * (\n            3.2 * Math.sin((0.5 * col + e) * 0.3) +\n            1.8 * Math.sin((0.5 * col + e) * 0.5) +\n            Math.sin((0.5 * col + e) * 0.7)\n          ))));\n          line += (height - 1 - row <= h) ? \"█\" : \" \";\n        }\n        rows[row].textContent = line;\n      }\n      e += 0.5;\n    };\n    render();\n    const timer = setInterval(render, speed);\n    return () => clearInterval(timer);\n  }, [width, height, speed]);\n\n  return <div ref={ref} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ascii-ui",
+  "homepage": "https://project-ascii-shadcn.vercel.app",
+  "items": [
+    {
+      "name": "measure",
+      "type": "registry:lib",
+      "title": "Measure Utilities",
+      "description": "Utility functions for measuring monospace character width and column count in the DOM. Includes measureChars, measureCharWidth, and observeResize for responsive ASCII layouts.",
+      "files": [
+        { "path": "src/registry/new-york/measure/measure.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "ascii-card",
+      "type": "registry:block",
+      "title": "ASCII Card",
+      "description": "A box-drawing card component with optional title, content, and single or double border styles using Unicode box-drawing characters.",
+      "files": [
+        { "path": "src/registry/new-york/ascii-card/ascii-card.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "ascii-input",
+      "type": "registry:block",
+      "title": "ASCII Input",
+      "description": "A text input field styled with ASCII box-drawing characters, featuring a blinking cursor, configurable label, placeholder, and single or double border styles.",
+      "files": [
+        { "path": "src/registry/new-york/ascii-input/ascii-input.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "ascii-table",
+      "type": "registry:block",
+      "title": "ASCII Table",
+      "description": "A data table rendered with Unicode box-drawing characters (double borders). Supports headers, rows, and auto-calculated or custom column widths.",
+      "files": [
+        { "path": "src/registry/new-york/ascii-table/ascii-table.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "ascii-3d-renderer",
+      "type": "registry:block",
+      "title": "ASCII 3D Renderer",
+      "description": "Renders 3D geometry or GLTF models as live ASCII art using Three.js AsciiEffect. Supports torus knot, sphere, cube, torus, cylinder, and custom model URLs with orbit controls.",
+      "files": [
+        { "path": "src/registry/new-york/ascii-3d-renderer/ascii-3d-renderer.tsx", "type": "registry:component" }
+      ],
+      "dependencies": ["three", "@types/three"]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:block",
+      "title": "Bar Chart",
+      "description": "An animated ASCII bar chart using █ block characters with sinusoidal height animation. Configurable width, height, bar count, and speed.",
+      "files": [
+        { "path": "src/registry/new-york/bar-chart/bar-chart.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "bouncing-banner",
+      "type": "registry:block",
+      "title": "Bouncing Banner",
+      "description": "An animated banner with ░█ block characters bouncing across a text label. Configurable text, width, and animation speed.",
+      "files": [
+        { "path": "src/registry/new-york/bouncing-banner/bouncing-banner.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "dot-matrix",
+      "type": "registry:block",
+      "title": "Dot Matrix",
+      "description": "Animates dot characters (.) in ASCII art with a flowing .░▒▓ density effect using sine/cosine noise. Pass multi-line text with dots to animate.",
+      "files": [
+        { "path": "src/registry/new-york/dot-matrix/dot-matrix.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "gradient-banner",
+      "type": "registry:block",
+      "title": "Gradient Banner",
+      "description": "An animated banner with a ▓▒░ gradient trail following a bouncing █ block around a text label. Configurable text, width, and speed.",
+      "files": [
+        { "path": "src/registry/new-york/gradient-banner/gradient-banner.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "nav-menu",
+      "type": "registry:block",
+      "title": "Nav Menu",
+      "description": "A navigation menu using tree-drawing characters (├ └) with linked labels and descriptions. Uses Next.js Link for routing.",
+      "files": [
+        { "path": "src/registry/new-york/nav-menu/nav-menu.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "plasma-orb",
+      "type": "registry:block",
+      "title": "Plasma Orb",
+      "description": "An animated plasma orb effect using ░▒▓█ density characters with radial sine wave patterns. Configurable width, height, and speed.",
+      "files": [
+        { "path": "src/registry/new-york/plasma-orb/plasma-orb.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:block",
+      "title": "Progress Bar",
+      "description": "An ASCII progress bar using █░ characters with optional label and fill animation. Configurable value, max, width, and animation speed.",
+      "files": [
+        { "path": "src/registry/new-york/progress-bar/progress-bar.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "sine-wave",
+      "type": "registry:block",
+      "title": "Sine Wave Chart",
+      "description": "An animated sine wave visualization using █ block characters. Configurable width, height, and animation speed.",
+      "files": [
+        { "path": "src/registry/new-york/sine-wave/sine-wave.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "status-panel",
+      "type": "registry:block",
+      "title": "Status Panel",
+      "description": "A system status panel with double-border box drawing, title, and key-value entries. Configurable title, entries object, and width.",
+      "files": [
+        { "path": "src/registry/new-york/status-panel/status-panel.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "theme-switcher",
+      "type": "registry:block",
+      "title": "Theme Switcher",
+      "description": "A boxed theme control panel for switching colour themes (M/G/R/B/O) and day/night modes. Requires ThemeProvider from @/lib/theme-context.",
+      "files": [
+        { "path": "src/registry/new-york/theme-switcher/theme-switcher.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "inline-theme-switcher",
+      "type": "registry:block",
+      "title": "Inline Theme Switcher",
+      "description": "A compact inline theme switcher for colour themes and day/night mode. Renders as a single line. Requires ThemeProvider from @/lib/theme-context.",
+      "files": [
+        { "path": "src/registry/new-york/inline-theme-switcher/inline-theme-switcher.tsx", "type": "registry:component" }
+      ]
+    }
+  ]
+}

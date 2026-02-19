@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-switcher",
+  "title": "Theme Switcher",
+  "description": "A boxed theme control panel for switching colour themes (M/G/R/B/O) and day/night modes. Requires ThemeProvider from @/lib/theme-context.",
+  "files": [
+    {
+      "path": "src/registry/new-york/theme-switcher/theme-switcher.tsx",
+      "content": "\"use client\";\n\nimport { useTheme, THEMES, MODES } from \"@/lib/theme-context\";\n\nexport interface ThemeSwitcherProps {\n  width?: number;\n}\n\nexport function ThemeSwitcher({ width = 40 }: ThemeSwitcherProps) {\n  const { theme, mode, setTheme, setMode } = useTheme();\n  const inner = width - 2;\n\n  return (\n    <div>\n      <div>{\"┌\" + \"─\".repeat(inner) + \"┐\"}</div>\n      <div>\n        {\"│ COLOUR \"}\n        {THEMES.map((t) => (\n          <button\n            key={t}\n            onClick={() => setTheme(t)}\n            className={`hover:underline transition-colors${t === theme ? \" font-bold\" : \"\"}`}\n            style={{ background: \"transparent\", border: \"none\", color: \"inherit\", font: \"inherit\", padding: 0, cursor: \"pointer\" }}\n          >\n            {`[${t.toUpperCase()}]`}\n          </button>\n        ))}\n        {\" \".repeat(Math.max(0, inner - \" COLOUR \".length - \"[M][G][R][B][O]\".length - 1))}\n        {\" │\"}\n      </div>\n      <div>{\"│\" + \" \".repeat(inner) + \"│\"}</div>\n      <div>\n        {\"│ DAY/NIGHT \"}\n        {MODES.map((m, i) => (\n          <span key={m}>\n            <button\n              onClick={() => setMode(m)}\n              className={`hover:underline transition-colors${m === mode ? \" font-bold\" : \"\"}`}\n              style={{ background: \"transparent\", border: \"none\", color: \"inherit\", font: \"inherit\", padding: 0, cursor: \"pointer\" }}\n            >\n              {`[${m.toUpperCase()}]`}\n            </button>\n            {i === 0 ? \"   \" : \"\"}\n          </span>\n        ))}\n        {\" \".repeat(Math.max(0, inner - \" DAY/NIGHT \".length - \"[DAY]   [NIGHT]\".length - 1))}\n        {\" │\"}\n      </div>\n      <div>{\"└\" + \"─\".repeat(inner) + \"┘\"}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { InlineThemeSwitcher } from "@/components/ascii/inline-theme-switcher";
+import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
 function DesignBanner() {
   const ref = useRef<HTMLSpanElement>(null);

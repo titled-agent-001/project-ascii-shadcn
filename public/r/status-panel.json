@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-panel",
+  "title": "Status Panel",
+  "description": "A system status panel with double-border box drawing, title, and key-value entries. Configurable title, entries object, and width.",
+  "files": [
+    {
+      "path": "src/registry/new-york/status-panel/status-panel.tsx",
+      "content": "\"use client\";\n\nexport interface StatusPanelProps {\n  title?: string;\n  entries: Record<string, string>;\n  width?: number;\n}\n\nexport function StatusPanel({ title = \"// SYSTEM STATUS\", entries, width = 40 }: StatusPanelProps) {\n  const lines: string[] = [];\n  lines.push(\"╔\" + \"═\".repeat(width - 2) + \"╗\");\n  lines.push(\"║ \" + title + \" \".repeat(Math.max(0, width - 3 - title.length)) + \"║\");\n  lines.push(\"╠\" + \"═\".repeat(width - 2) + \"╣\");\n  for (const [k, v] of Object.entries(entries)) {\n    const row = `${k}: ${v}`;\n    lines.push(\"║ \" + row + \" \".repeat(Math.max(0, width - 3 - row.length)) + \"║\");\n  }\n  lines.push(\"╚\" + \"═\".repeat(width - 2) + \"╝\");\n\n  return <pre style={{ margin: 0, font: \"inherit\", lineHeight: \"inherit\" }}>{lines.join(\"\\n\")}</pre>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

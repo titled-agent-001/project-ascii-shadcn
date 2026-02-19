@@ -1,20 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { BouncingBanner } from "@/components/ascii/bouncing-banner";
-import { GradientBanner } from "@/components/ascii/gradient-banner";
-import { SineWaveChart } from "@/components/ascii/sine-wave";
-import { BarChart } from "@/components/ascii/bar-chart";
-import { PlasmaOrb } from "@/components/ascii/plasma-orb";
-import { DotMatrix } from "@/components/ascii/dot-matrix";
-import { AsciiCard } from "@/components/ascii/ascii-card";
-import { AsciiTable } from "@/components/ascii/ascii-table";
-import { AsciiProgressBar } from "@/components/ascii/progress-bar";
-import { StatusPanel } from "@/components/ascii/status-panel";
-import { NavMenu } from "@/components/ascii/nav-menu";
-import { ThemeSwitcher } from "@/components/ascii/theme-switcher";
-import { AsciiInput } from "@/components/ascii/ascii-input";
-import { Ascii3DRenderer } from "@/components/ascii/ascii-3d-renderer";
+import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-banner";
+import { GradientBanner } from "@/registry/new-york/gradient-banner/gradient-banner";
+import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
+import { BarChart } from "@/registry/new-york/bar-chart/bar-chart";
+import { PlasmaOrb } from "@/registry/new-york/plasma-orb/plasma-orb";
+import { DotMatrix } from "@/registry/new-york/dot-matrix/dot-matrix";
+import { AsciiCard } from "@/registry/new-york/ascii-card/ascii-card";
+import { AsciiTable } from "@/registry/new-york/ascii-table/ascii-table";
+import { AsciiProgressBar } from "@/registry/new-york/progress-bar/progress-bar";
+import { StatusPanel } from "@/registry/new-york/status-panel/status-panel";
+import { NavMenu } from "@/registry/new-york/nav-menu/nav-menu";
+import { ThemeSwitcher } from "@/registry/new-york/theme-switcher/theme-switcher";
+import { AsciiInput } from "@/registry/new-york/ascii-input/ascii-input";
+import { Ascii3DRenderer } from "@/registry/new-york/ascii-3d-renderer/ascii-3d-renderer";
 
 const dotText = [
   "..........██...........",

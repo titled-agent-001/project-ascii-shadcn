@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gradient-banner",
+  "title": "Gradient Banner",
+  "description": "An animated banner with a ▓▒░ gradient trail following a bouncing █ block around a text label. Configurable text, width, and speed.",
+  "files": [
+    {
+      "path": "src/registry/new-york/gradient-banner/gradient-banner.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useRef } from \"react\";\n\nexport interface GradientBannerProps {\n  text: string;\n  width: number;\n  speed?: number;\n}\n\nexport function GradientBanner({ text, width, speed = 150 }: GradientBannerProps) {\n  const ref = useRef<HTMLSpanElement>(null);\n\n  useEffect(() => {\n    const el = ref.current;\n    if (!el) return;\n    let t = 0;\n    const n = text.length;\n    if (width <= n) { el.textContent = text.substring(0, width); return; }\n    const clp = Math.floor((width - n) / 2);\n    const crp = width - n - clp;\n    const maxP = Math.max(clp, crp);\n\n    const render = () => {\n      const ci = t % (maxP * 2);\n      const pos = ci < maxP ? ci : maxP * 2 - ci - 1;\n      let left = \"\";\n      for (let j = 0; j < clp; j++) {\n        const dist = Math.abs(j - Math.min(pos, clp - 1));\n        left += dist === 0 ? \"█\" : dist === 1 ? \"▓\" : dist === 2 ? \"▒\" : \"░\";\n      }\n      let right = \"\";\n      for (let j = 0; j < crp; j++) {\n        const dist = Math.abs(j - Math.min(pos, crp - 1));\n        right += dist === 0 ? \"█\" : dist === 1 ? \"▓\" : dist === 2 ? \"▒\" : \"░\";\n      }\n      el.textContent = left + text + right;\n      t = (t + 1) % (maxP * 2);\n    };\n    render();\n    const timer = setInterval(render, speed);\n    return () => clearInterval(timer);\n  }, [text, width, speed]);\n\n  return <span ref={ref} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

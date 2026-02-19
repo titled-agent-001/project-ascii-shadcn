@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "measure",
+  "title": "Measure Utilities",
+  "description": "Utility functions for measuring monospace character width and column count in the DOM. Includes measureChars, measureCharWidth, and observeResize for responsive ASCII layouts.",
+  "files": [
+    {
+      "path": "src/registry/new-york/measure/measure.ts",
+      "content": "\"use client\";\n\nexport function measureChars(el: HTMLElement): number {\n  const { charWidth } = measureCharWidth(el);\n  if (charWidth === 0) return 78;\n  return Math.floor(el.clientWidth / charWidth);\n}\n\nexport function measureCharWidth(el: HTMLElement): { charWidth: number; cols: number } {\n  const probe = document.createElement(\"span\");\n  probe.style.visibility = \"hidden\";\n  probe.style.position = \"absolute\";\n  probe.style.whiteSpace = \"pre\";\n  probe.style.font = getComputedStyle(el).font;\n  probe.textContent = \"X\";\n  el.appendChild(probe);\n  const charWidth = probe.getBoundingClientRect().width;\n  el.removeChild(probe);\n  if (charWidth === 0) return { charWidth: 0, cols: 78 };\n  return { charWidth, cols: Math.floor(el.clientWidth / charWidth) };\n}\n\nexport function observeResize(el: HTMLElement, cb: (cols: number) => void): () => void {\n  const ro = new ResizeObserver(() => {\n    const cols = measureChars(el);\n    cb(cols);\n  });\n  ro.observe(el);\n  return () => ro.disconnect();\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

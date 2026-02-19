@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "inline-theme-switcher",
+  "title": "Inline Theme Switcher",
+  "description": "A compact inline theme switcher for colour themes and day/night mode. Renders as a single line. Requires ThemeProvider from @/lib/theme-context.",
+  "files": [
+    {
+      "path": "src/registry/new-york/inline-theme-switcher/inline-theme-switcher.tsx",
+      "content": "\"use client\";\n\nimport { useTheme, THEMES, MODES } from \"@/lib/theme-context\";\n\nexport function InlineThemeSwitcher() {\n  const { theme, mode, setTheme, setMode } = useTheme();\n\n  return (\n    <span>\n      {\"COLOUR  \"}\n      {THEMES.map((t) => (\n        <button\n          key={t}\n          onClick={() => setTheme(t)}\n          className={`hover:underline transition-colors${t === theme ? \" font-bold\" : \"\"}`}\n        >\n          {`[${t.toUpperCase()}]`}\n        </button>\n      ))}\n      {\"  DAY/NIGHT \"}\n      {MODES.map((m, i) => (\n        <span key={m}>\n          <button\n            onClick={() => setMode(m)}\n            className={`hover:underline transition-colors${m === mode ? \" font-bold\" : \"\"}`}\n          >\n            {`[${m.toUpperCase()}]`}\n          </button>\n          {i === 0 ? \" \" : \"\"}\n        </span>\n      ))}\n    </span>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

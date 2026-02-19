@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { BouncingBanner } from "@/components/ascii/bouncing-banner";
-import { GradientBanner } from "@/components/ascii/gradient-banner";
-import { SineWaveChart } from "@/components/ascii/sine-wave";
-import { BarChart } from "@/components/ascii/bar-chart";
-import { PlasmaOrb } from "@/components/ascii/plasma-orb";
-import { ThemeSwitcher } from "@/components/ascii/theme-switcher";
-import { measureCharWidth } from "@/components/ascii/measure";
+import { BouncingBanner } from "@/registry/new-york/bouncing-banner/bouncing-banner";
+import { GradientBanner } from "@/registry/new-york/gradient-banner/gradient-banner";
+import { SineWaveChart } from "@/registry/new-york/sine-wave/sine-wave";
+import { BarChart } from "@/registry/new-york/bar-chart/bar-chart";
+import { PlasmaOrb } from "@/registry/new-york/plasma-orb/plasma-orb";
+import { ThemeSwitcher } from "@/registry/new-york/theme-switcher/theme-switcher";
+import { measureCharWidth } from "@/registry/new-york/measure/measure";
 import { useState } from "react";
 
 const portrait = [

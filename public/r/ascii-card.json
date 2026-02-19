@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ascii-card",
+  "title": "ASCII Card",
+  "description": "A box-drawing card component with optional title, content, and single or double border styles using Unicode box-drawing characters.",
+  "files": [
+    {
+      "path": "src/registry/new-york/ascii-card/ascii-card.tsx",
+      "content": "\"use client\";\n\nexport interface AsciiCardProps {\n  title?: string;\n  content?: string;\n  width?: number;\n  doubleBorder?: boolean;\n}\n\nexport function AsciiCard({ title, content, width = 40, doubleBorder = false }: AsciiCardProps) {\n  const [tl, tr, bl, br, h, v, ml, mr] = doubleBorder\n    ? [\"╔\", \"╗\", \"╚\", \"╝\", \"═\", \"║\", \"╠\", \"╣\"]\n    : [\"┌\", \"┐\", \"└\", \"┘\", \"─\", \"│\", \"├\", \"┤\"];\n\n  const padLine = (line: string) => {\n    const trimmed = line.substring(0, width - 4);\n    return `${v} ${trimmed}${\" \".repeat(Math.max(0, width - 4 - trimmed.length))} ${v}`;\n  };\n\n  const hline = (l: string, r: string) => `${l}${h.repeat(width - 2)}${r}`;\n\n  const lines: string[] = [];\n  lines.push(hline(tl, tr));\n  if (title !== undefined) {\n    lines.push(...title.split(\"\\n\").map(padLine));\n    if (content !== undefined) lines.push(hline(ml, mr));\n  }\n  if (content !== undefined) {\n    lines.push(...content.split(\"\\n\").map(padLine));\n  }\n  lines.push(hline(bl, br));\n\n  return <pre style={{ margin: 0, font: \"inherit\", lineHeight: \"inherit\" }}>{lines.join(\"\\n\")}</pre>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}
