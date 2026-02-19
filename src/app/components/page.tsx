@@ -15,6 +15,7 @@ import { NavMenu } from "@/registry/new-york/nav-menu/nav-menu";
 import { ThemeSwitcher } from "@/registry/new-york/theme-switcher/theme-switcher";
 import { AsciiInput } from "@/registry/new-york/ascii-input/ascii-input";
 import { Ascii3DRenderer } from "@/registry/new-york/ascii-3d-renderer/ascii-3d-renderer";
+import { AsciiTabs } from "@/registry/new-york/ascii-tabs/ascii-tabs";
 
 const dotText = [
   "..........██...........",
@@ -724,6 +725,80 @@ export default function ComponentsPage() {
           <div>{`      height={300}`}</div>
           <div>{`      autoRotate={true}`}</div>
           <div>{`      enableControls={true}`}</div>
+          <div>{`    />`}</div>
+          <div></div>
+          <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>
+        </div>
+
+        {/* 16. AsciiTabs */}
+        <div style={{ marginBottom: "2rem" }}>
+          <div>{`┌─ 16. AsciiTabs ───────────────────────────────────────────────────────────┐`}</div>
+          <div>{`│                                                                          │`}</div>
+          <div>{`│  Tabbed interface using ASCII box-drawing characters.                    │`}</div>
+          <div>{`│  Configurable: tabs, width, doubleBorder, keyboard navigation            │`}</div>
+          <div>{`│                                                                          │`}</div>
+          <div>{`└──────────────────────────────────────────────────────────────────────────┘`}</div>
+          <div></div>
+          <div>{`  Demo (single border):`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "HOME", content: "Welcome to ASCII UI.\nEverything is monospaced." },
+                { label: "ABOUT", content: "Built with box-drawing characters.\nNo images needed." },
+                { label: "SETTINGS", content: "Theme: dark\nFont: Menlo 14px\nBorder: single" },
+                { label: "HELP", content: "Use ← → arrow keys to navigate tabs.\nPress Home/End to jump." },
+              ]}
+              width={60}
+            />
+          </div>
+          <div></div>
+          <div>{`  Demo (double border):`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTabs
+              tabs={[
+                { label: "STATUS", content: "All systems operational." },
+                { label: "LOGS", content: "[OK] Boot sequence complete\n[OK] Services started" },
+              ]}
+              width={50}
+              doubleBorder
+            />
+          </div>
+          <div></div>
+          <div>{`  Installation:`}</div>
+          <div></div>
+          <div>{`  CLI:`}</div>
+          <div>{`  npx shadcn add "${BASE}/r/ascii-tabs.json"`}</div>
+          <div></div>
+          <div>{`  Manual:`}</div>
+          <div>{`  Copy: registry/new-york/ascii-tabs/ascii-tabs.tsx`}</div>
+          <div>{`    →  components/ascii-tabs.tsx`}</div>
+          <div></div>
+          <div>{`  Props:`}</div>
+          <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
+            <AsciiTable
+              headers={["Prop", "Type", "Default", "Description"]}
+              rows={[
+                ["tabs", "Array<{label,content}>", "required", "Tab definitions"],
+                ["defaultTab", "number", "0", "Initially active tab index"],
+                ["width", "number", "60", "Width in characters"],
+                ["doubleBorder", "boolean", "false", "Use double border chars"],
+                ["onChange", "(index:number)=>void", "—", "Tab change callback"],
+              ]}
+            />
+          </div>
+          <div></div>
+          <div>{`  Usage:`}</div>
+          <div></div>
+          <div>{`    import { AsciiTabs }`}</div>
+          <div>{`      from "@/registry/new-york/ascii-tabs/ascii-tabs"`}</div>
+          <div></div>
+          <div>{`    <AsciiTabs`}</div>
+          <div>{`      tabs={[`}</div>
+          <div>{`        { label: "HOME", content: "Welcome home." },`}</div>
+          <div>{`        { label: "ABOUT", content: "About page." },`}</div>
+          <div>{`      ]}`}</div>
+          <div>{`      width={60}`}</div>
+          <div>{`      doubleBorder={false}`}</div>
           <div>{`    />`}</div>
           <div></div>
           <div>{`──────────────────────────────────────────────────────────────────────────────`}</div>

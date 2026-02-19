@@ -147,6 +147,18 @@
       "files": [
         { "path": "src/registry/new-york/inline-theme-switcher/inline-theme-switcher.tsx", "type": "registry:component" }
       ]
+    },
+    {
+      "name": "ascii-tabs",
+      "type": "registry:block",
+      "title": "ASCII Tabs",
+      "description": "A tabbed interface component using ASCII box-drawing characters with active tab indication, keyboard navigation, and optional double borders.",
+      "files": [
+        {
+          "path": "src/registry/new-york/ascii-tabs/ascii-tabs.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
