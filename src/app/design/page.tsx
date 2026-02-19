@@ -74,7 +74,17 @@ export default function DesignPage() {
           <div>{`║${pad("   └ Dark-first — designed for the void")}║`}</div>
           <div>{inner}</div>
           <div>{mid}</div>
-          <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden", verticalAlign: "top" }}><span style={{ display: "inline-block", verticalAlign: "top" }}><PlasmaOrb width={17} height={10} /></span><span style={{ display: "inline-block", width: "2ch" }}>{" "}</span><span style={{ display: "inline-block", verticalAlign: "top" }}><div>{`┌${"─".repeat(W - 21)}┐`}</div><BarChart width={W - 21} height={8} barCount={9} /><div>{`└${"─".repeat(W - 21)}┘`}</div></span></span>║</div>
+          <div style={{ display: "flex", width: `${W + 2}ch` }}>
+            <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
+            <div style={{ width: `${17}ch` }} className="shrink-0"><PlasmaOrb width={17} height={10} /></div>
+            <div style={{ width: "2ch" }} className="shrink-0">{" "}</div>
+            <div className="flex-1 min-w-0">
+              <div>{`┌${"─".repeat(W - 21)}┐`}</div>
+              <BarChart width={W - 21} height={8} barCount={9} />
+              <div>{`└${"─".repeat(W - 21)}┘`}</div>
+            </div>
+            <div className="shrink-0">{"║\n".repeat(10).trimEnd()}</div>
+          </div>
           <div>{mid}</div>
           <div>║<span style={{ display: "inline-block", width: `${W}ch`, overflow: "hidden" }}>{` `}<InlineThemeSwitcher /></span>║</div>
           <div>{mid}</div>
