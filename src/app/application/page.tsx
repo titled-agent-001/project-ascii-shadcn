@@ -9,7 +9,7 @@ import { DotMatrix } from "@/registry/new-york/dot-matrix/dot-matrix";
 import { StatusPanel } from "@/registry/new-york/status-panel/status-panel";
 import { InlineThemeSwitcher } from "@/registry/new-york/inline-theme-switcher/inline-theme-switcher";
 
-const W = 60;
+const W = 72;
 
 function pad(s: string, w = W) {
   return s + " ".repeat(Math.max(0, w - s.length));
@@ -57,8 +57,8 @@ export default function ApplicationPage() {
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
           <div>{top}</div>
-          <div>{`║${pad("//APPLICATION                                          ...")}║`}</div>
-          <div>{`║${pad("...                               useful utilities & tools")}║`}</div>
+          <div>{`║${pad("//APPLICATION                                                        ...")}║`}</div>
+          <div>{`║${pad("...                                         useful utilities & tools")}║`}</div>
           <div>{mid}</div>
           <div>{banTop}</div>
           <div>{`║├─┤`}<BouncingBanner text="[APPLICATION]" width={W - 6} />{`├─┤║`}</div>
@@ -79,7 +79,7 @@ export default function ApplicationPage() {
           />
           <div>{inner}</div>
           <div>{`║${pad("  Status:")}║`}</div>
-          <AsciiProgressBar label="SYSTEM" value={73} width={50} animated />
+          <AsciiProgressBar label="SYSTEM" value={73} width={62} animated />
           <div>{inner}</div>
           <div>{mid}</div>
           <StatusPanel
