@@ -1085,7 +1085,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/bouncing-banner.json"` },
                 { label: "Manual", content: BOUNCING_BANNER_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1130,7 +1130,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/gradient-banner.json"` },
                 { label: "Manual", content: GRADIENT_BANNER_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1175,7 +1175,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/sine-wave.json"` },
                 { label: "Manual", content: SINE_WAVE_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1220,7 +1220,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/bar-chart.json"` },
                 { label: "Manual", content: BAR_CHART_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1266,7 +1266,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/plasma-orb.json"` },
                 { label: "Manual", content: PLASMA_ORB_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1311,7 +1311,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/dot-matrix.json"` },
                 { label: "Manual", content: DOT_MATRIX_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1361,7 +1361,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-card.json"` },
                 { label: "Manual", content: ASCII_CARD_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1422,7 +1422,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-table.json"` },
                 { label: "Manual", content: ASCII_TABLE_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1473,7 +1473,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/progress-bar.json"` },
                 { label: "Manual", content: PROGRESS_BAR_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1524,7 +1524,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/status-panel.json"` },
                 { label: "Manual", content: STATUS_PANEL_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1579,7 +1579,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/nav-menu.json"` },
                 { label: "Manual", content: NAV_MENU_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1630,7 +1630,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/theme-switcher.json"` },
                 { label: "Manual", content: THEME_SWITCHER_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1679,7 +1679,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-input.json"` },
                 { label: "Manual", content: ASCII_INPUT_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1741,7 +1741,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-3d-renderer.json"` },
                 { label: "Manual", content: ASCII_3D_RENDERER_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1822,7 +1822,7 @@ export default function ComponentsPage() {
                 { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-tabs.json"` },
                 { label: "Manual", content: ASCII_TABS_SRC },
               ]}
-              width={70}
+              width={70} copyable
             />
           </div>
           <div></div>
@@ -1880,7 +1880,7 @@ export default function ComponentsPage() {
               { label: "CLI", content: `npx shadcn add "${BASE}/r/ascii-gutter.json"` },
               { label: "Manual", content: ASCII_GUTTER_SRC },
             ]}
-            width={70}
+            width={70} copyable
           />
         </div>
         <div></div>

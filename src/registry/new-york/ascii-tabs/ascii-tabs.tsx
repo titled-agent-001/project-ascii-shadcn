@@ -11,6 +11,7 @@ export interface AsciiTabsProps {
   defaultTab?: number;
   width?: number;
   doubleBorder?: boolean;
+  copyable?: boolean;
   onChange?: (index: number) => void;
   className?: string;
 }
@@ -20,6 +21,7 @@ export function AsciiTabs({
   defaultTab = 0,
   width = 60,
   doubleBorder = false,
+  copyable = false,
   onChange,
   className,
 }: AsciiTabsProps) {
@@ -173,17 +175,19 @@ export function AsciiTabs({
             </React.Fragment>
           ))}
         </div>
-        <span
-          onClick={handleCopyActive}
-          className={cn(
-            "cursor-pointer select-none whitespace-nowrap",
-            "opacity-50 hover:opacity-100 transition-opacity",
-            copied && "opacity-100"
-          )}
-          title={copied ? "Copied!" : "Copy to clipboard"}
-        >
-          {copied ? "✓ copied" : "⧉ copy"}
-        </span>
+        {copyable && (
+          <span
+            onClick={handleCopyActive}
+            className={cn(
+              "cursor-pointer select-none whitespace-nowrap",
+              "opacity-50 hover:opacity-100 transition-opacity",
+              copied && "opacity-100"
+            )}
+            title={copied ? "Copied!" : "Copy to clipboard"}
+          >
+            {copied ? "✓ copied" : "⧉ copy"}
+          </span>
+        )}
       </div>
 
       {/* Connection line */}
