@@ -197,7 +197,7 @@ export default function HomePage() {
             tabs={[
               {
                 label: "ARES",
-                content: <PortraitAnimation width={W} />,
+                content: <PortraitAnimation width={W - 2} />,
               },
               {
                 label: "MORPH",
