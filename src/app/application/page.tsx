@@ -56,6 +56,7 @@ export default function ApplicationPage() {
       <div className="w-full font-mono flex gap-[1ch]" style={{ lineHeight: 1 }}>
         <Gutter contentRef={contentRef} />
         <div ref={contentRef} className="flex-1 min-w-0 whitespace-pre">
+          {/* ── Header ── */}
           <div>{top}</div>
           <div>{`║${pad("//APPLICATION                                                        ...")}║`}</div>
           <div>{`║${pad("...                                         useful utilities & tools")}║`}</div>
@@ -67,6 +68,9 @@ export default function ApplicationPage() {
           <div>{inner}</div>
           <div>{`║${pad("  Tools for navigating the information landscape:")}║`}</div>
           <div>{inner}</div>
+          <div>{bot}</div>
+
+          {/* ── Table (self-bordered) ── */}
           <AsciiTable
             headers={["Tool", "Version", "Description"]}
             rows={[
@@ -76,12 +80,16 @@ export default function ApplicationPage() {
               ["PLASMA RENDERER", "v0.9", "visualization engine"],
               ["COGSEC SCANNER", "v1.7", "threat surface mapper"],
             ]}
+            width={W + 2}
           />
-          <div>{inner}</div>
+
+          {/* ── Status bar ── */}
+          <div>{top}</div>
           <div>{`║${pad("  Status:")}║`}</div>
-          <AsciiProgressBar label="SYSTEM" value={73} width={62} animated />
-          <div>{inner}</div>
-          <div>{mid}</div>
+          <div>{`║  `}<AsciiProgressBar label="SYSTEM" value={73} width={40} animated />{pad("", W - 56)}{`║`}</div>
+          <div>{bot}</div>
+
+          {/* ── Status panel (self-bordered) ── */}
           <StatusPanel
             entries={{
               "NETWORK": "ACTIVE",
@@ -89,11 +97,14 @@ export default function ApplicationPage() {
               "LATENCY": "12ms",
               "UPTIME": "99.97%",
             }}
-            width={W}
+            width={W + 2}
           />
-          <div>{mid}</div>
+
+          {/* ── Dot matrix ── */}
           <DotMatrix text="ASCIISYSTEMS" speed={80} />
-          <div>{mid}</div>
+
+          {/* ── Footer ── */}
+          <div>{top}</div>
           <div>{`║ `}<InlineThemeSwitcher />{`║`}</div>
           <div>{mid}</div>
           <div>{`║`}<Link href="/" className="hover:underline transition-colors">{` ◄ HOME`}</Link>{pad("", W - 7)}{`║`}</div>
