@@ -723,19 +723,19 @@ export default function ComponentsPage() {
           <div>{`  Props:`}</div>
           <div style={{ margin: ".25rem 0 .5rem 2ch" }}>
             <AsciiTable
-              headers={["Prop", "Type", "Default"]}
+              headers={["Prop", "Type", "Default", "Description"]}
               rows={[
-                ["width", "number", "500"],
-                ["height", "number", "300"],
-                ["charset", "string", "\" .:-+*=%\""],
-                ["geometry", "string", "\"torusknot\""],
-                ["modelUrl", "string", "—"],
-                ["modelScale", "number", "—"],
-                ["color", "string", "\"#ffffff\""],
-                ["autoRotate", "boolean", "true"],
-                ["rotationSpeed", "number", "1"],
-                ["enableControls", "boolean", "true"],
-                ["invert", "boolean", "false"],
+                ["width", "number", "500", "Canvas width"],
+                ["height", "number", "300", "Canvas height"],
+                ["charset", "string", '" .:-+*=%"', "ASCII chars"],
+                ["geometry", '"torusknot"|"sphere"|...', '"torusknot"', "Shape type"],
+                ["modelUrl", "string", "—", "Custom GLTF URL"],
+                ["modelScale", "number", "—", "Model scale"],
+                ["color", "string", '"#ffffff"', "Mesh color"],
+                ["autoRotate", "boolean", "true", "Auto rotate"],
+                ["rotationSpeed", "number", "1", "Rotation speed"],
+                ["enableControls", "boolean", "true", "Orbit controls"],
+                ["invert", "boolean", "false", "Invert chars"],
               ]}
             />
           </div>
